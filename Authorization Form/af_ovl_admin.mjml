@@ -11,7 +11,7 @@
 </mj-column>
 </mj-section>
 <mj-section background-color="rgb(255,255,255)" padding-bottom='0' padding-top='0'>
-<mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+<mj-column padding-bottom='0' border-radius='10px 10px 0px 0px' background-color="white" padding-top='15px'>
 <mj-text>
 Dear Admin,
 </mj-text>
@@ -25,7 +25,7 @@ A new authorization form has been submitted for {{festivalName}}.</mj-text>
 <span style='font-weight:500;'>International Title:</span> {{internationalTitle}}
 </mj-text>
 <mj-text>
-<span style='font-weight:500;'>Original Title:</span> {{originalTitle}}
+<span style='font-weight:500'>Original Title:</span> {{originalTitle}}
 </mj-text>
 <mj-text>
 <span style='font-weight:500;'>Director's Name:</span> {{directorName}}
@@ -69,7 +69,7 @@ A new authorization form has been submitted for {{festivalName}}.</mj-text>
 </mj-column>
 </mj-section>
 <mj-section background-color="rgb(255,255,255)" padding-bottom='0' padding-top='0'>
-<mj-column padding-bottom='0'  padding-top=0 border-radius='10px 10px 0 0' background-color="white" padding-top='0px'>
+<mj-column padding-bottom='0'  padding-top=0 border-radius='10px 10px 0px 0px' background-color="white" padding-top='0px'>
 <mj-text>
 Have a great day!
 </mj-text>
