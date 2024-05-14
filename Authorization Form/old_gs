@@ -1,0 +1,133 @@
+// Function to create the HTML for the web app
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index');
+}
+
+// Function to handle form submission
+function addUser(internationalTitle, originalTitle, directorName, contactName, email, companyName, country, optionalFields) {
+  try {
+    // Get the target sheet by name
+    var sheetName = 'Submitted_24_Test';
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+
+    // If the sheet doesn't exist, create it
+    if (!sheet) {
+      sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet();
+      sheet.setName(sheetName);
+    }
+
+    // Find the next available row to append data
+    var lastRow = sheet.getLastRow() + 1;
+
+    // Define the column numbers corresponding to each field
+    var columnNumbers = {
+      internationalTitle: 1,
+      originalTitle: 2,
+      directorName: 3,
+      contactName: 5,
+      email: 6,
+      companyName: 4,
+      country: 7,
+      professionalCategoriesAccess: 8,
+      professionalCategoriesBlock: 9,
+      countriesBlock: 10,
+      extraContacts: 11,
+      additionalComments: 12
+    };
+
+    // Set values for required fields in specific columns
+    sheet.getRange(lastRow, columnNumbers.internationalTitle).setValue(internationalTitle);
+    sheet.getRange(lastRow, columnNumbers.originalTitle).setValue(originalTitle);
+    sheet.getRange(lastRow, columnNumbers.directorName).setValue(directorName);
+    sheet.getRange(lastRow, columnNumbers.contactName).setValue(contactName);
+    sheet.getRange(lastRow, columnNumbers.email).setValue(email);
+    sheet.getRange(lastRow, columnNumbers.companyName).setValue(companyName);
+    sheet.getRange(lastRow, columnNumbers.country).setValue(country);
+
+    // Set values for optional fields in specific columns
+    sheet.getRange(lastRow, columnNumbers.professionalCategoriesAccess).setValue(optionalFields.professionalCategoriesAccess.join(", "));
+    sheet.getRange(lastRow, columnNumbers.professionalCategoriesBlock).setValue(optionalFields.professionalCategoriesBlock.join(", "));
+    sheet.getRange(lastRow, columnNumbers.countriesBlock).setValue(optionalFields.countriesBlock);
+    sheet.getRange(lastRow, columnNumbers.extraContacts).setValue(optionalFields.extraContacts);
+    sheet.getRange(lastRow, columnNumbers.additionalComments).setValue(optionalFields.additionalComments);
+
+    // Send email using Postmark template
+    sendEmailWithPostmarkTemplate(email, internationalTitle, originalTitle, directorName, contactName, companyName, country, optionalFields);
+    sendUserEmail(email, internationalTitle);
+
+  } catch (error) {
+    return "Error: Form submission failed. Please try again later.";
+  }
+
+}
+
+
+// Function to send user email
+
+function sendUserEmail(email, internationalTitle) {
+  var postmarkApiKey = '87d6b64c-1745-4278-a502-e316dc984e8d';
+  var postmarkTemplateId = 35608924;
+  var postmarkApiEndpoint = 'https://api.postmarkapp.com/email/withTemplate';
+
+  var payload = {
+    "From": "feedback@festivalscope.com",
+    "To": email,
+    "TemplateId": postmarkTemplateId,
+    "TemplateModel": {
+      "internationalTitle": internationalTitle,
+    }
+  };
+
+  var options = {
+    "method": "post",
+    "contentType": "application/json",
+    "headers": {
+      "Accept": "application/json",
+      "X-Postmark-Server-Token": postmarkApiKey
+    },
+    "payload": JSON.stringify(payload)
+  };
+
+  UrlFetchApp.fetch(postmarkApiEndpoint, options);
+}
+
+
+
+// Function to send email using Postmark template
+function sendEmailWithPostmarkTemplate(email, internationalTitle, originalTitle, directorName, contactName, companyName, country, optionalFields) {
+  var postmarkApiKey = '87d6b64c-1745-4278-a502-e316dc984e8d';
+  var postmarkTemplateId = 35601290;
+  var postmarkApiEndpoint = 'https://api.postmarkapp.com/email/withTemplate';
+
+  var payload = {
+    "From": "feedback@festivalscope.com",
+    "To": email,
+    "TemplateId": postmarkTemplateId,
+    "TemplateModel": {
+      "internationalTitle": internationalTitle,
+      "originalTitle": originalTitle,
+      "directorName": directorName,
+      "contactName": contactName,
+      "email": email,
+      "companyName": companyName,
+      "country": country,
+      "professionalCategoriesAccess": optionalFields.professionalCategoriesAccess.join(", "),
+      "professionalCategoriesBlock": optionalFields.professionalCategoriesBlock.join(", "),
+      "countriesBlock": optionalFields.countriesBlock,
+      "extraContacts": optionalFields.extraContacts,
+      "additionalComments": optionalFields.additionalComments
+    }
+  };
+
+  var options = {
+    "method": "post",
+    "contentType": "application/json",
+    "headers": {
+      "Accept": "application/json",
+      "X-Postmark-Server-Token": postmarkApiKey
+    },
+    "payload": JSON.stringify(payload)
+  };
+
+  UrlFetchApp.fetch(postmarkApiEndpoint, options);
+}

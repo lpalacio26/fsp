@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw on Canvas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #canvas-container {
+            border: 2px solid #aaa;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        #canvas {
+            cursor: crosshair;
+        }
+
+        #controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .control {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="canvas" width="800" height="400"></canvas>
+    </div>
+    <div id="controls">
+        <input type="color" id="colorPicker" class="control">
+        <input type="number" id="widthPicker" min="1" max="20" value="5" class="control">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            var isDrawing = false;
+            var color = document.getElementById('colorPicker').value;
+            var lineWidth = document.getElementById('widthPicker').value;
+
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mousemove', draw);
+
+            function startDrawing(event) {
+                isDrawing = true;
+                draw(event);
+            }
+
+            function stopDrawing() {
+                isDrawing = false;
+            }
+
+            function draw(event) {
+                if (!isDrawing) return;
+
+                var x = event.offsetX;
+                var y = event.offsetY;
+
+                ctx.lineWidth = lineWidth;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = color;
+
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+
+            document.getElementById('colorPicker').addEventListener('change', function () {
+                color = this.value;
+            });
+
+            document.getElementById('widthPicker').addEventListener('change', function () {
+                lineWidth = this.value;
+            });
+        });
+    </script>
+</body>
+</html>

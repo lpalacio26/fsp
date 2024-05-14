@@ -1,0 +1,47 @@
+<mjml>
+  <mj-head>
+
+    </mj-style>
+    <mj-attributes>
+      <mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="rgb(250,250,250)" width="550px">
+    <mj-section padding-bottom='0'>
+      <mj-column padding-bottom='0'>
+        <mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png' href='https://pro.festivalscope.com'></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+        <mj-text>
+          Hello {{FIRST_NAME}},
+        </mj-text>
+        <mj-text line-height='1.5'>
+         Unfortunately, your request to join Festival Scope Pro was not complete.
+        </mj-text>
+
+        <mj-text padding-top=0 line-height=1.5>You can apply for an account by clicking on the button below:</mj-text>
+                <mj-button line-height=1.5 border-radius=10px height=40px width=150px href='https://pro.festivalscope.com/sign-up' background-color="#32D8DC" font-family="Futura, Arial, sans-serif" font-size=16px>Sign Up</mj-button>
+
+                <mj-text padding-top=0 line-height=1.5>Please note we'll only check your application once the payment details are submitted. In case we are unable to approve your request, you will not be charged.</mj-text>
+
+
+      </mj-column>
+    </mj-section padding='0'>
+
+
+    <mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='9px'>
+      <mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+        <mj-text padding-bottom=0 padding-top='20px'>See you soon on Festival Scope Pro!
+        </mj-text>
+        <mj-text>The Festival Scope Pro Team</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding=0>
+      <mj-column padding=0>
+        <mj-text font-family='Arial, sans-serif' font-size=10px font-style=oblique padding=0 padding-bottom=30px>If you think this e-mail was sent to you by mistake, please write back to <strong><a href='mailto:feedback@festivalscope.com'>feedback@festivalscope.com</a></strong>.</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

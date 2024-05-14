@@ -1,0 +1,46 @@
+<mjml>
+<mj-head>
+<mj-attributes>
+<mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+</mj-attributes>
+</mj-head>
+<mj-body background-color="rgb(250,250,250)" width="550px">
+<mj-section padding-bottom='0'>
+<mj-column padding-bottom='0'>
+<mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png'></mj-image>
+</mj-column>
+</mj-section>
+<mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+<mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+<mj-text>
+Dear {{RECIPIENT}},
+</mj-text>
+<mj-text line-height='1.5'>
+It looks like you’ve tried to access your account from a new browser. To keep your account secure, we require verification of this access.
+</mj-text>
+<mj-text line-height='1.5'>
+Please use the following code to complete the verification process:</mj-text>
+</mj-column>
+</mj-section padding='0'>
+<mj-section background-color="white" padding-top='20px'>
+<mj-column width='150px' background-color="#32D8DC" border-radius="10px" padding-top='5px' padding-bottom='5px' >
+<mj-text color='white' align='center' font-weight="500" letter-spacing='3px' font-size='20px'>
+{{VERIFICATION_CODE}}
+</mj-text>
+</mj-text>
+</mj-column>
+</mj-section>
+<mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='20px'>
+<mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+<mj-text line-height='1.5'>
+The code will expire in 10 minutes.</mj-text>
+<mj-text line-height='1.5'>
+If you did not initiate this request or suspect unauthorized access, please contact our support team at <a style='color:#32D8DC; text-decoration:none' href='mailto:feedback@festivalscope.com'>feedback@festivalscope.com</a>.
+</mj-text>
+<mj-text padding-bottom=0 padding-top='30px'>Happy screenings,
+</mj-text>
+<mj-text>The Festival Scope Pro Team</mj-text>
+</mj-column>
+</mj-section>
+</mj-body>
+</mjml>

@@ -1,0 +1,34 @@
+<mjml>
+<mj-head>
+<mj-attributes>
+<mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+</mj-attributes>
+</mj-head>
+<mj-body background-color="rgb(250,250,250)" width="550px">
+<mj-section padding-bottom='0'>
+<mj-column padding-bottom='0'>
+<mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png'></mj-image>
+</mj-column>
+</mj-section>
+<mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+<mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+<mj-text>
+Hello,
+</mj-text>
+<mj-text line-height='1.5'>
+Thank you for submitting the authorization form for {{internationalTitle}}. You will be soon be able to see it on the <a href='https://pro.festivalscope.com/rh/my-films' style='text-decoration:none; color: black; font-weight:700'>My Films</a> section of your Festival Scope Pro account.</mj-text>
+<mj-button href='https://pro.festivalscope.com/rh/my-films' background-color="#32d8dc"font-family="Futura, Arial, sans-serif" font-size='18px' font-weight='800' border-radius='15px' inner-padding="15px 30px">My Films</mj-button>
+<mj-text line-height='1.5'>You will then be able to update the permissions if necessary. In the meantime, if you have any updates or questions, refer to your Festival Scope Pro contact.</mj-text>
+</mj-column>
+</mj-section padding='0'>
+
+<mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='20px'>
+<mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+
+<mj-text padding-bottom=0 padding-top='20px'>Happy screenings,
+</mj-text>
+<mj-text>The Festival Scope Pro Team</mj-text>
+</mj-column>
+</mj-section>
+</mj-body>
+</mjml>

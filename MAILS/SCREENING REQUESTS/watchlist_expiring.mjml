@@ -1,0 +1,59 @@
+<mjml>
+  <mj-head>
+    <mj-style inline>
+      .example div {
+        background: #fafafa;
+        width: 70%;
+        text-align: justify;
+        margin: 0 auto;
+        padding: 10px 20px 10px 20px;
+        border-radius: 10px;
+
+      }
+    </mj-style>
+    <mj-attributes>
+      <mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="rgb(250,250,250)" width="550px">
+    <mj-section padding-bottom='0'>
+      <mj-column padding-bottom='0'>
+        <mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png'></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+        <mj-text>
+          Hello {{FIRST_NAME}},
+        </mj-text>
+        <mj-text line-height='1.5'>
+          {{FILM_NAME}} is due to expire in two weeks and we have noticed that you added this title to your Watchlist. Following <span style='font-weight:500'>{{EXPIRING_DATE}}</span>, we cannot guarantee that the film will still be available on Festival Scope Pro.
+        </mj-text>
+                <mj-text line-height=1.5>Click on the button below to take your chance to watch <span style='font-weight:500'>{{FILM_NAME}}</span> right now.</mj-text>
+
+      </mj-column>
+    </mj-section padding='0'>
+    <mj-section background-color="white" padding=0>
+      <mj-column>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(255,255,255)" padding=0>
+      <mj-column padding=0 width=200px>
+        <mj-button border-radius=10px height=40px width=150px href='{{FILM_LINK}}' background-color="#32D8DC" font-family="Futura, Arial, sans-serif" font-size=16px line-height=1.5>Watch Film</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='9px'>
+      <mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+        <mj-text padding-bottom=0 padding-top='20px'>Happy screenings,
+        </mj-text>
+        <mj-text>The Festival Scope Pro Team</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding=0>
+      <mj-column padding=0>
+        <mj-text font-family='Arial, sans-serif' font-size=10px font-style=oblique padding=0 padding-bottom=30px>If you think this e-mail was sent to you by mistake, please write back to <strong><a href='mailto:feedback@festivalscope.com'>feedback@festivalscope.com</a></strong>.</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

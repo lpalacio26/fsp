@@ -1,0 +1,44 @@
+<mjml>
+<mj-head>
+<mj-attributes>
+<mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+</mj-attributes>
+</mj-head>
+<mj-body background-color="rgb(250,250,250)" width="550px">
+<mj-section padding-bottom='0'>
+<mj-column padding-bottom='0'>
+<mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png'></mj-image>
+</mj-column>
+</mj-section>
+<mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+<mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+<mj-text>
+Dear Admin,
+</mj-text>
+<mj-text line-height='1.5'>
+The account associated with <a style="text-decoration:none; color:black; font-weight:700" href='https://pro.festivalscope.com/admin/users/edit/{{USER_ID}}'>{{USER_EMAIL}}</a></strong> has been locked due to five unsuccessful attempts to enter a verification code. 
+</mj-text>
+</mj-column>
+</mj-section padding='0'>
+<mj-section background-color="white" padding-top='5px'>
+<mj-column width='80%' background-color="rgb(250,250,250)" border-radius="10px" padding-top='10px' padding-bottom='10px'>
+<mj-text>
+Id: {{USER_ID}}
+</mj-text>
+<mj-text>
+First Name: {{USER_FIRSTNAME}}
+</mj-text>
+<mj-text>
+Last Name: {{USER_LASTNAME}}
+</mj-text>
+</mj-column>
+</mj-section>
+<mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='20px'>
+<mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+<mj-text>
+<a style="text-decoration:none; color:black; font-weight:700" href='https://pro.festivalscope.com/admin/users/edit/{{USER_ID}}'>Click here</a> to go to the User page.
+</mj-text>
+</mj-column>
+</mj-section>
+</mj-body>
+</mjml>
