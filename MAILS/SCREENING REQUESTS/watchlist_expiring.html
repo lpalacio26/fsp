@@ -184,22 +184,19 @@
                                   <tbody>
                                     <tr>
                                       <td style="width: 350px">
-                                        <a
-                                          href="https://pro.festivalscope.com"
-                                          target="_blank"
-                                          ><img
-                                            height="auto"
-                                            src="https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png"
-                                            style="
-                                              border: 0;
-                                              display: block;
-                                              outline: none;
-                                              text-decoration: none;
-                                              height: auto;
-                                              width: 100%;
-                                            "
-                                            width="350"
-                                        /></a>
+                                        <img
+                                          height="auto"
+                                          src="https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png"
+                                          style="
+                                            border: 0;
+                                            display: block;
+                                            outline: none;
+                                            text-decoration: none;
+                                            height: auto;
+                                            width: 100%;
+                                          "
+                                          width="350"
+                                        />
                                       </td>
                                     </tr>
                                   </tbody>
@@ -329,9 +326,13 @@
                                     color: #000000;
                                   "
                                 >
-                                  {{SENDER_NAME}}, the Rights Holder of
-                                  {{FILM_NAME}}, has accepted your screening
-                                  request.
+                                  {{FILM_NAME}} is due to expire in two weeks
+                                  and we have noticed that you added this title
+                                  to your Watchlist. Following
+                                  <span style="font-weight: 500"
+                                    >{{EXPIRING_DATE}}</span
+                                  >, we cannot guarantee that the film will
+                                  still be available on Festival Scope Pro.
                                 </div>
                               </td>
                             </tr>
@@ -353,9 +354,12 @@
                                     color: #000000;
                                   "
                                 >
-                                  Please sign in to your Festival Scope Pro
-                                  account and click on the button below to watch
-                                  the film:
+                                  Click on the button below to take your chance
+                                  to watch
+                                  <span style="font-weight: 500"
+                                    >{{FILM_NAME}}</span
+                                  >
+                                  right now.
                                 </div>
                               </td>
                             </tr>
@@ -364,6 +368,61 @@
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--[if mso | IE]></td></tr></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:550px;" width="550" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+      <div
+        style="
+          background: white;
+          background-color: white;
+          margin: 0px auto;
+          max-width: 550px;
+        "
+      >
+        <table
+          align="center"
+          border="0"
+          cellpadding="0"
+          cellspacing="0"
+          role="presentation"
+          style="background: white; background-color: white; width: 100%"
+        >
+          <tbody>
+            <tr>
+              <td
+                style="
+                  direction: ltr;
+                  font-size: 0px;
+                  padding: 0;
+                  text-align: center;
+                  vertical-align: top;
+                "
+              >
+                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:550px;" ><![endif]-->
+                <div
+                  class="mj-column-per-100 outlook-group-fix"
+                  style="
+                    font-size: 13px;
+                    text-align: left;
+                    direction: ltr;
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 100%;
+                  "
+                >
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="vertical-align: top"
+                    width="100%"
+                  ></table>
                 </div>
                 <!--[if mso | IE]></td></tr></table><![endif]-->
               </td>
@@ -462,14 +521,13 @@
                                         border: none;
                                         border-radius: 10px;
                                         cursor: auto;
-                                        height: 40px;
                                         padding: 10px 25px;
                                         background: #32d8dc;
                                       "
                                       valign="middle"
                                     >
                                       <a
-                                        href="{{LINK_MOVIE}}"
+                                        href="{{FILM_LINK}}"
                                         style="
                                           background: #32d8dc;
                                           color: #ffffff;

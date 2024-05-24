@@ -82,10 +82,6 @@
           width: 100% !important;
           max-width: 100%;
         }
-        .mj-column-px-200 {
-          width: 200px !important;
-          max-width: 200px;
-        }
       }
     </style>
     <style type="text/css">
@@ -329,33 +325,9 @@
                                     color: #000000;
                                   "
                                 >
-                                  {{SENDER_NAME}}, the Rights Holder of
-                                  {{FILM_NAME}}, has accepted your screening
-                                  request.
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td
-                                align="left"
-                                style="
-                                  font-size: 0px;
-                                  padding: 10px 25px;
-                                  word-break: break-word;
-                                "
-                              >
-                                <div
-                                  style="
-                                    font-family: Futura, Arial, sans-serif;
-                                    font-size: 16px;
-                                    line-height: 1.5;
-                                    text-align: left;
-                                    color: #000000;
-                                  "
-                                >
-                                  Please sign in to your Festival Scope Pro
-                                  account and click on the button below to watch
-                                  the film:
+                                  {{SENDER_NAME}} ({{SENDER_COMPANY_NAME}}) has
+                                  sent you the following message concerning your
+                                  screening request for {{FILM_NAME}}.
                                 </div>
                               </td>
                             </tr>
@@ -374,8 +346,8 @@
       <!--[if mso | IE]></td></tr></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:550px;" width="550" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
       <div
         style="
-          background: rgb(255, 255, 255);
-          background-color: rgb(255, 255, 255);
+          background: #ffffff;
+          background-color: #ffffff;
           margin: 0px auto;
           max-width: 550px;
         "
@@ -386,11 +358,7 @@
           cellpadding="0"
           cellspacing="0"
           role="presentation"
-          style="
-            background: rgb(255, 255, 255);
-            background-color: rgb(255, 255, 255);
-            width: 100%;
-          "
+          style="background: #ffffff; background-color: #ffffff; width: 100%"
         >
           <tbody>
             <tr>
@@ -398,14 +366,16 @@
                 style="
                   direction: ltr;
                   font-size: 0px;
-                  padding: 0;
+                  padding: 20px 0;
+                  padding-bottom: 10px;
+                  padding-top: 10px;
                   text-align: center;
                   vertical-align: top;
                 "
               >
-                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:200px;" ><![endif]-->
+                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="example-outlook" style="vertical-align:top;width:550px;" ><![endif]-->
                 <div
-                  class="mj-column-px-200 outlook-group-fix"
+                  class="mj-column-per-100 outlook-group-fix example"
                   style="
                     font-size: 13px;
                     text-align: left;
@@ -420,79 +390,32 @@
                     cellpadding="0"
                     cellspacing="0"
                     role="presentation"
+                    style="vertical-align: top"
                     width="100%"
                   >
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; padding: 0">
-                          <table
-                            border="0"
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            width="100%"
-                          >
-                            <tr>
-                              <td
-                                align="center"
-                                vertical-align="middle"
-                                style="
-                                  font-size: 0px;
-                                  padding: 10px 25px;
-                                  word-break: break-word;
-                                "
-                              >
-                                <table
-                                  border="0"
-                                  cellpadding="0"
-                                  cellspacing="0"
-                                  role="presentation"
-                                  style="
-                                    border-collapse: separate;
-                                    width: 150px;
-                                    line-height: 100%;
-                                  "
-                                >
-                                  <tr>
-                                    <td
-                                      align="center"
-                                      bgcolor="#32D8DC"
-                                      role="presentation"
-                                      style="
-                                        border: none;
-                                        border-radius: 10px;
-                                        cursor: auto;
-                                        height: 40px;
-                                        padding: 10px 25px;
-                                        background: #32d8dc;
-                                      "
-                                      valign="middle"
-                                    >
-                                      <a
-                                        href="{{LINK_MOVIE}}"
-                                        style="
-                                          background: #32d8dc;
-                                          color: #ffffff;
-                                          font-family: Futura, Arial, sans-serif;
-                                          font-size: 16px;
-                                          font-weight: normal;
-                                          line-height: 1.5;
-                                          margin: 0;
-                                          text-decoration: none;
-                                          text-transform: none;
-                                        "
-                                        target="_blank"
-                                        >Watch Film</a
-                                      >
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </tbody>
+                    <tr>
+                      <td
+                        align="left"
+                        style="
+                          font-size: 0px;
+                          padding: 0;
+                          word-break: break-word;
+                        "
+                      >
+                        <div
+                          style="
+                            font-family: futura;
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 1.5;
+                            text-align: left;
+                            color: #000000;
+                          "
+                        >
+                          {{COMMENT}}
+                        </div>
+                      </td>
+                    </tr>
                   </table>
                 </div>
                 <!--[if mso | IE]></td></tr></table><![endif]-->
@@ -591,7 +514,7 @@
                                     color: #000000;
                                   "
                                 >
-                                  Happy screenings,
+                                  Best regards,
                                 </div>
                               </td>
                             </tr>

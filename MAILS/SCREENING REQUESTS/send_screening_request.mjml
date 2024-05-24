@@ -45,7 +45,7 @@
     </mj-section>
     <mj-section background-color="rgb(255,255,255)" padding=0>
       <mj-column width=200px>
-        <mj-button line-height=1.5 border-radius=10px height=40px width=120px href='{LINK_DENIED}' font-family="Futura, Arial, sans-serif" font-size=16px>Deny</mj-button>
+        <mj-button line-height=1.5 border-radius=10px height=40px width=120px href='{{LINK_DENIED}}' font-family="Futura, Arial, sans-serif" font-size=16px>Deny</mj-button>
       </mj-column>
       <mj-column padding=0 width=200px >
         <mj-button line-height=1.5 border-radius=10px height=40px width=120px href='{{LINK_APPROVED}}' background-color="#32D8DC" font-family="Futura, Arial, sans-serif" font-size=16px>Approve</mj-button>

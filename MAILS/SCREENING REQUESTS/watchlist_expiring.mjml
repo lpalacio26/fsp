@@ -39,7 +39,7 @@
     </mj-section>
     <mj-section background-color="rgb(255,255,255)" padding=0>
       <mj-column padding=0 width=200px>
-        <mj-button border-radius=10px height=40px width=150px href='{{FILM_LINK}}' background-color="#32D8DC" font-family="Futura, Arial, sans-serif" font-size=16px line-height=1.5>Watch Film</mj-button>
+        <mj-button border-radius=10px  width=150px href='{{FILM_LINK}}' background-color="#32D8DC" font-family="Futura, Arial, sans-serif" font-size=16px line-height=1.5>Watch Film</mj-button>
       </mj-column>
     </mj-section>
 
