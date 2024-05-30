@@ -18,7 +18,7 @@
           Hello {{FIRST_NAME}},
         </mj-text>
         <mj-text line-height='1.5'>
-         Unfortunately, your request to join Festival Scope Pro was not complete.
+         Unfortunately, your request to join Festival Scope Pro was not completed.
         </mj-text>
 
         <mj-text padding-top=0 line-height=1.5>You can apply for an account by clicking on the button below:</mj-text>

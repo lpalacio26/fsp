@@ -20,7 +20,7 @@
         <mj-text line-height='1.5'>
           Thank you for your request to join Festival Scope Pro.
         </mj-text>
-        <mj-text padding-top=0px line-height=1.5>We will get back to you as soon as possible. Please note you will not be charged until your membership is confirmed. For any doubts or questions please contact us at <a style='text-decoration: none; color: #32D8DC' href='mailto:feedback@festivalscope.com'>feedback@festivalscope.com</a>.</mj-text>
+        <mj-text padding-top=0px line-height=1.5>We will get back to you as soon as possible. Please note you will not be charged until your membership is confirmed. If you have any questions, please contact us at <a style='text-decoration: none; color: #32D8DC' href='mailto:feedback@festivalscope.com'>feedback@festivalscope.com</a>.</mj-text>
 
       </mj-column>
     </mj-section padding='0'>
