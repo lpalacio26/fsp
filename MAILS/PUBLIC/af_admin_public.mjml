@@ -1,0 +1,68 @@
+<mjml>
+<mj-head>
+<mj-attributes>
+<mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+</mj-attributes>
+</mj-head>
+<mj-body background-color="rgb(250,250,250)" width="550px">
+<mj-section padding-bottom='0'>
+<mj-column padding-bottom='0'>
+<mj-image width='350px' src='https://docs.festivalscope.com/2024/fsp/fspub_logo.png'></mj-image>
+</mj-column>
+</mj-section>
+<mj-section background-color="rgb(255,255,255)" padding-bottom='0' padding-top='0'>
+<mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+<mj-text>
+Hello,
+</mj-text>
+<mj-text line-height='1.5'>
+A new authorization form has been submitted for {{festivalName}}.</mj-text>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding-top='5px'>
+<mj-column width='90%' background-color="rgb(250,250,250)" border-radius="10px" padding-top='10px' padding-bottom='10px'>
+<mj-text>
+<span style='font-weight:500;'>International Title:</span> {{internationalTitle}}
+</mj-text>
+<mj-text>
+<span style='font-weight:500;'>Original Title:</span> {{originalTitle}}
+</mj-text>
+<mj-text>
+<span style='font-weight:500;'>Director's Name:</span> {{directorName}}
+</mj-text>
+<mj-text>
+<span style='font-weight:500;'>Contact:</span> {{contactName}}
+</mj-text>
+<mj-text>
+<span style='font-weight:500; text-decoration:underlineo'>Email:</span> {{email}}
+</mj-text>
+<mj-text>
+<span style='font-weight:500;'>Company:</span> {{companyName}}
+</mj-text>
+<mj-text>
+<span style='font-weight:500;'>Country:</span> {{country}}
+</mj-text>
+<mj-text>
+<span style='font-weight:500;'>Countries Blocked:</span> {{countriesBlock}}
+</mj-text>
+
+<mj-text>
+<span style='font-weight:500;'>Additional Comments:</span> {{additionalComments}}
+</mj-text>
+</mj-column>
+</mj-section>
+<mj-section background-color="rgb(255,255,255)" padding-bottom='0' padding-top='0'>
+<mj-column padding-bottom='0'  padding-top=0 border-radius='10px 10px 0 0' background-color="white" padding-top='0px'>
+<mj-text>
+Have a great day!
+</mj-text>
+<mj-text line-height='0'>
+Your friendly neighborhood <span style='color:#32d8dc; font-weight:500'>ScopeBot</span></mj-text>
+</mj-column>
+</mj-section padding='0'>
+<mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='20px'>
+<mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+</mj-column>
+</mj-section>
+</mj-body>
+</mjml>
