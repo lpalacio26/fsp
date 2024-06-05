@@ -1,0 +1,33 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="rgb(250,250,250)" width="550px">
+    <mj-section padding-bottom='0'>
+      <mj-column padding-bottom='0'>
+        <mj-image width='300px' src='https://docs.festivalscope.com/2024/fsp/fspub_logo.png'></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+        <mj-text>
+          Hello {{FIRST_NAME}},
+        </mj-text>
+        <mj-text line-height='1.5'>
+          Welcome to The Club!</mj-text>
+        <mj-text line-height='1.5'>You've subscribed to our newsletter and will now discover exclusive premieres, receive personalized information and find out about special events as they go live!</mj-text>
+      </mj-column>
+    </mj-section padding='0'>
+
+    <mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='20px'>
+      <mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+
+        <mj-text padding-bottom=0 padding-top='20px'>Happy screenings,
+        </mj-text>
+        <mj-text>The Festival Scope Team</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
