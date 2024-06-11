@@ -1,0 +1,351 @@
+<mjml>
+<mj-head>
+    <mj-style>
+    .footer-menu{
+        color: #000000; text-decoration: none;margin-right: 25px; margin-left: 25px;
+        
+    }
+
+    .festivals-color{
+        border-bottom: solid 2px #872C84;
+    }
+
+    .labels-color{
+        border-bottom: solid 2px #F01D26;
+    }
+
+    .films-color{
+        border-bottom: solid 2px #FF4080;
+    }
+
+    .directors-color{
+        border-bottom: solid 2px #F3DB00;
+    }
+
+    .expanded-color{
+        border-bottom: solid 2px #00837E;
+        margin-bottom: 10px;
+    }
+
+    .join-color{
+        background: #32D8DC;
+        border: solid 2px #2CAFB2;
+        padding: 0 10px;
+    }
+
+    .socials{
+        display: flex;
+        justify-content: space-between;
+        background: green;
+    }
+
+    .top-borders{
+        border-radius: 30px;
+        margin-top: 50px;
+    }
+
+    .box-shadow {
+      	box-shadow: 100px 100px 100px black; 
+      }
+
+    
+    </mj-style>
+
+<mj-attributes>
+    <mj-text font-family=' Futura, Arial, sans-serif' >
+    <mj-class name "nav" font-size="14px"/>
+    <mj-all font-family='Futura, Arial, sans-serif' / >
+</mj-attributes>
+</mj-head>
+<mj-body width="800px" background-color="#fafafa" >
+
+<!-- FS LOGO-->
+
+<mj-section padding-top='15px' padding-bottom='0'>
+<mj-column padding='0'>
+<mj-image href='https://pro.festivalscope.com' padding='0' align='center'src="https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png" width="350px" alt='Festival Scope Pro'></mj-image>
+</mj-column>
+</mj-section>
+<mj-section padding='0'><mj-column padding='0'><mj-text padding-top='0' align='right'><a style='color:black; padding:0;' href='hhttps://docs.festivalscope.com/2024/MK2%20Pagnol/FS_MK2_MarcelPagnol.html'>View in browser<a/></mj-text></mj-column></mj-section>
+
+<!-- TOP IMAGE -->
+<mj-section padding="0">
+<mj-column padding="0" css-class="br_20">
+<mj-image href='https://pro.festivalscope.com/line-up/show/mk2/18-marcel-pagnol' padding="0"src="https://docs.festivalscope.com/2024/MK2%20Pagnol/marcel_header_new.png" alt='Marcel Pagnol Collection'>
+</mj-image>
+</mj-column>
+</mj-section>
+
+<!-- SPIELBERG INTRO -->
+
+<mj-section background-color="white">
+<mj-column width='91%'><mj-text color="rgb(15,15,15)" align="center" font-size="14px" line-height= '18px' font-style="oblique" font-weight='bold' padding-bottom='0'>
+One day, I saw LA FEMME DU BOULANGER (THE BAKER'S WIFE)… It was a shock. This movie is as powerful as a film by Capra, John Ford and Truffaut altogether. Pagnol must have been an outstanding man.</mj-text>
+<mj-text color='rgb(15,15,15)' align='right' padding-right='10%' font-size='14px' padding-bottom='20px' padding-top='20px'>Steven Spielberg</mj-text>
+<mj-divider border-style='solid' border-color="rgb(15,15,15)" padding=0 border-width="1px" width='100%'></mj-divider>
+<mj-image href='https://vimeo.com/798484412/4f1c58f087?share=copy' src='https://docs.festivalscope.com/2024/MK2%20Pagnol/mk2_example_ns.png'></mj-image>
+</mj-column>
+</mj-section>
+
+<!-- EDITORIAL TEXT -->
+
+<mj-section background-color="white" padding-top='0'>
+<mj-column vertical-align="middle" width='91%'>
+<mj-image padding-bottom='0' padding-top='0'alt='MK2' href='https://pro.festivalscope.com/line-up/show/mk2/18-marcel-pagnol' width='600px' src="https://docs.festivalscope.com/2024/MK2 Pagnol/mk2_logo_NEW.png">
+</mj-image>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding-top='0'>
+<mj-column vertical-align="middle" width='91%'>
+<mj-text color="rgb(15,15,15)" align="justify" font-size="14px" line-height= '18px'>
+April 18th marks the 50th anniversary of the death of legendary French auteur Marcel Pagnol. 
+To celebrate his life and work, mk2 Films has picked up a collection of 23 feature films, including his iconic Marseille 
+trilogy — MARIUS, FANNY and  CÉSAR — starring Raimu, whom Orson Welles once bestowed with the title of “the best actor in the world." </mj-text><mj-text color="rgb(15,15,15)" align="justify" font-size="14px" line-height= '18px'>
+
+Steeped in the theatrical tradition from his early adulthood, Pagnol discovered early talking cinema and 
+set out to become a technically ambitious and often avant-garde filmmaker. Discover <span style='color:rgb(202,42,29); font-weight:bolder'>4K restorations</span> of timeless classics like 
+<strong><a style='color: rgb(15,15,15); text-decoration:none' href='https://pro.festivalscope.com/film/marius'>MARIUS (1931)</a></strong>  
+— directed by Alexander Korda and adapted by Pagnol from his play of the same name —, the compassionate 
+<strong><a style='color: rgb(15,15,15); text-decoration:none' href='https://pro.festivalscope.com/film/harvest-6'>HARVEST (1937)</a></strong> and one of his final works 
+<strong><a style='color: rgb(15,15,15); text-decoration:none' href='https://pro.festivalscope.com/film/manon-of-the-springss'>MANON OF THE SPRINGS (1952)</a></strong>.
+</mj-text>
+        <mj-social icon-size="30px" mode="horizontal" align="left" color="#f1f40b">
+
+          <mj-social-element color='rgb(15,15,15)'padding='4px 4px 4px 0px'alt='Contact MK2' text-padding='0 0px 0 5px' font-size='14px' font-weight='500' href="mailto:intlfest@mk2.com" src="https://docs.festivalscope.com/2018/marc/fss/img/design/contact@2x.png" font-family='Futura, Arial, sans-serif'>Contact <span style='color:rgb(202,42,29); font-weight: bolder'>mk2 Films</span> for Bookings.
+          </mj-social-element>
+        </mj-social> 
+</mj-column>
+</mj-section>
+
+<!-- MARIUS -->
+
+
+<mj-section padding="0"background-color="rgb(15,15,15)" >
+<mj-column padding="0">
+<mj-image padding='0'alt='Marius' href='https://pro.festivalscope.com/film/marius' padding="0"src="https://docs.festivalscope.com/2024/MK2%20Pagnol/marius_new_2.png">
+</mj-image>
+</mj-column>
+</mj-section>
+
+<mj-section background-color="white" padding-bottom='10px' padding-top='5px'>
+<mj-group>
+<mj-column vertical-align="middle" width='70%' padding-left='9px' padding-top='0'>
+<mj-text color=rgb(15,15,15) font-size="28px" font-weight='500' ><a href='https://pro.festivalscope.com/film/marius' style='color:rgb(15,15,15); text-decoration:none'>
+Marius</a>
+</mj-text>
+</mj-column>
+<mj-column vertical-align="middle"  width='30%' padding-right='11px' >
+        <mj-button padding='0' font-family='Futura, Arial, sans-serif' href='https://pro.festivalscope.com/film/marius' font-weight='500' background-color="#f1f40b" color='black'>Watch Film</mj-button></mj-column>
+</mj-group>
+</mj-section>
+<mj-section padding="0" background-color="white">
+<mj-column width="91%">
+<mj-divider border-color="rgb(15,15,15)" padding=0 border-width="2px"></mj-divider>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding="0">
+<mj-column padding-top='10px'  padding-left='10px'>
+<mj-text color=rgb(15,15,15) font-size='14px'>
+Directed by Alexander Korda | 1931
+</mj-text>
+<mj-text color=rgb(15,15,15) font-size='14px' padding-top='0'>
+Screenplay by Marcel Pagnol, based on his play
+</mj-text>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding="0">
+<mj-column padding-bottom= '20px' padding-left='10px'>
+<mj-text color=rgb(15,15,15) font-size=14px line-height= 20px align='justify'>
+<span style='font-style:oblique; font-weight:bolder'><strong>"A superbly performed and polished romantic drama."</strong></span> – The Hollywood Reporter</mj-text>
+
+<mj-text padding-top='0'color=rgb(15,15,15) font-size=14px line-height= 20px align='justify'>
+<span style='font-style:oblique; font-weight:bolder'><strong>"A marvelous, lusty film."</strong></span> – The Chicago Reader</mj-text>
+<mj-text color=rgb(15,15,15) font-size=14px line-height= 20px align='justify'>
+Two years after its successful stage debut, Marcel Pagnol
+channelled his unique creative talents into the world of sound
+cinema, joining forces with Hungarian-born director Alexander
+Korda, who was poised to make a significant impact on the British film industry.
+ MARIUS is a poignant picture of love, longing, and the choices we make in life. 
+ It is a timeless film that explores the complexities of desire and duty, leaving audiences with a bittersweet reflection on the paths we choose in matters of the heart.</mj-text>
+<mj-text color=rgb(15,15,15) font-size=14px line-height= 20px font-style='oblique' align='right'>Part of the The Marseille Trilogy.</mj-text>
+<mj-button href='https://vimeo.com/826906851/1fbffacf93?share=copy' font-family="Futura, Arial, sans-serif" background-color="#f1f40b" font-size='14px' font-weight='500' color='black'>Trailer</mj-button>
+</mj-column>
+</mj-section>
+
+<!-- MANON -->
+
+
+<mj-section padding="0"background-color="rgb(15,15,15)" >
+<mj-column padding="0">
+<mj-image padding ='0'alt='Manon of the Springs' href='https://pro.festivalscope.com/film/manon-of-the-springss' padding="0"src="https://docs.festivalscope.com/2024/MK2%20Pagnol/manon_new_2.png">
+</mj-image>
+</mj-column>
+</mj-section>
+
+<mj-section background-color="white" padding-bottom='10px' padding-top='5px'>
+<mj-group>
+<mj-column vertical-align="middle" width='70%' padding-left='9px'>
+<mj-text color=rgb(15,15,15) font-size="28px" font-weight='500' ><a href='https://pro.festivalscope.com/film/manon-of-the-springs' style='color: rgb(15,15,15); text-decoration:none'>
+Manon of the Springs</a>
+</mj-text>
+</mj-column>
+<mj-column vertical-align="middle"  width='30%' padding-right='11px'>
+             <mj-button padding='0' font-family='Futura, Arial, sans-serif' href='https://pro.festivalscope.com/film/manon-of-the-springs' font-weight='500' background-color="#f1f40b" color='black'>Watch Film</mj-button></mj-column>
+
+</mj-group>
+</mj-section>
+<mj-section padding="0" background-color="white">
+<mj-column width="91%">
+<mj-divider border-color="rgb(15,15,15)" padding=0 border-width="2px"></mj-divider>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding="0">
+<mj-column padding-top='10px'  padding-left='10px'>
+<mj-text color=rgb(15,15,15) font-size='14px'>
+Directed by Marcel Pagnol | 1952
+</mj-text>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding="0">
+<mj-column padding-bottom= '20px' padding-left='10px' >
+<mj-text color=rgb(15,15,15) font-size=14px line-height= 20px align='justify'>
+<span style='font-style:oblique; font-weight:bolder'><strong>"Funny and colourful, all bathed in sunshine."</strong></span> – Télérama</mj-text>
+
+
+<mj-text color=rgb(15,15,15) font-size=14px line-height= 20px align='justify'>
+ MANON OF THE SPRINGS tells the saga of Manon, a young
+woman seeking revenge for the injustices inflicted upon her
+family. The character of Manon stands out as a symbol of resilience and determination. <br>Also available, UGOLIN (1952).</mj-text>
+<mj-button href='https://vimeo.com/798484412/4f1c58f087?share=copy' font-family="Futura, Arial, sans-serif" background-color="#f1f40b" font-size='14px' font-weight='500' color='black'>Trailer</mj-button>
+
+</mj-column>
+</mj-section>
+
+
+<!-- HARVEST -->
+
+
+<mj-section padding="0"background-color="rgb(15,15,15)" >
+<mj-column padding="0">
+<mj-image padding='0' alt='Harvest' href='https://pro.festivalscope.com/film/harvest-6' padding="0"src="https://docs.festivalscope.com/2024/MK2%20Pagnol/harvest_new_2.png">
+</mj-image>
+</mj-column>
+</mj-section>
+
+<mj-section background-color="white" padding-bottom='10px' padding-top='0'>
+<mj-group>
+<mj-column vertical-align="middle" width='70%' padding-left='9px' padding-top='0'>
+<mj-text color=rgb(15,15,15) font-size="28px" font-weight='500' ><a href='https://pro.festivalscope.com/film/harvest-6' style='color: rgb(15,15,15); text-decoration:none'>
+Harvest</a>
+</mj-text>
+</mj-column>
+<mj-column vertical-align="middle"  width='30%' padding-right='11px'>
+        <mj-button padding='0' font-family='Futura, Arial, sans-serif' href='https://pro.festivalscope.com/film/harvest-6' font-weight='500' background-color="#f1f40b" color='black'>Watch Film</mj-button></mj-column>
+</mj-group>
+</mj-section>
+<mj-section padding="0" background-color="white">
+<mj-column width="91%">
+<mj-divider border-color="rgb(15,15,15)" padding=0 border-width="2px"></mj-divider>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding="0">
+<mj-column padding-top='10px'  padding-left='10px'>
+<mj-text color=rgb(15,15,15) font-size='14px'>
+Directed by Marcel Pagnol | 1937
+</mj-text>
+<mj-text color=rgb(15,15,15) font-size='14px' padding-top='0'>
+Starring Fernandel
+</mj-text>
+</mj-column>
+</mj-section>
+<mj-section background-color="white" padding="0">
+<mj-column padding-bottom= '20px' padding-left='10px'>
+<mj-text color=rgb(15,15,15) font-size=14px line-height= 20px align='justify'>
+<span style='font-style:oblique; font-weight:bolder'><strong>"A film of utter serenity and great goodness, 
+so reverently played and so compassionately directed that it is far less an entertainment 
+work than it is a testament to the dignity of man."</strong></span> – The New York Times</mj-text>
+
+
+<mj-text color=rgb(15,15,15) font-size=14px line-height= 20px align='justify'>
+HARVEST showcases the contrast between the arid terrain and the villagers’ determination to revive it. The film’s narrative unfolds at a leisurely pace, allowing viewers to immerse themselves in the contemplative and evocative atmosphere.</mj-text>
+</mj-column>
+</mj-section>
+
+
+
+
+
+<!-- DIRECTOR -->
+
+<mj-section background-color="white" padding-top='30px' padding-bottom=0>
+<mj-column>
+<mj-divider border-color="rgb(15,15,15)" border-style='dashed'padding=0 border-width="1px" width='91%'></mj-divider>
+</mj-column></mj-section>
+<mj-section background-color="white">
+<mj-column vertical-align="middle" padding-left='13px'>
+<mj-image alt='Marcel Pagnol' href='https://pro.festivalscope.com/director/marcel-pagnol' src='https://moncinemaamoiblog.files.wordpress.com/2020/04/marcel_pagnol_03.jpg?w=800'></mj-image>
+</mj-column>
+
+<mj-column vertical-align="middle" padding-right='13px' >
+<mj-text align='justify' color='rgb(15,15,15)' font-size='30px' font-weight='500'><a style='text-decoration:none;color: rgb(15,15,15)'href='https://pro.festivalscope.com/director/marcel-pagnol'>Marcel Pagnol</a></mj-text>
+<mj-text align='justify' color='rgb(15,15,15)' font-size='14px' line-height='20px'>
+Marcel Pagnol (1895–1974) was a French writer, playwright, and filmmaker. His films capture the essence of Provençal life and emphasize the significance of human relationships, often set against the backdrop of the picturesque countryside. He repeatedly collaborated with a cast of renown starring actors such as Fernandel and Raimu. In 2024, delve into this unique cinematic universe.
+</mj-text>
+<mj-text align='justify' color='rgb(15,15,15)' font-size='14px' line-height='20px'>Discover more of Pagnol's work on <strong><a style="text-decoration:none; color:rgb(15,15,15)" href='https://mk2films.com/collections/marcel-pagnol-collection/'>mk2 Films</a></strong>.</mj-text>
+
+</mj-column>
+
+</mj-section>
+<mj-section background-color="white"><mj-column ><mj-button href='mailto:intlfest@mk2.com' font-family="Futura, Arial, sans-serif" background-color="#f1f40b" font-size='14px' font-weight='500' color='black'>Contact mk2 Films for Bookings</mj-button>
+</mj-column></mj-section>
+<mj-section background-color="white" padding='0'><mj-column width='91%'><mj-divider border-color="rgb(15,15,15)" padding=0 border-width="2px"></mj-divider>
+</mj-column></mj-section>
+
+
+
+<!-- FOOTER -->
+
+<mj-section background-color="white" padding-bottom='0px'>
+<mj-column width="95%">
+<mj-image alt='Festival Scope Pro' href='https://pro.festivalscope.com' src="https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png" width="350px" align="center"></mj-image>
+<mj-text align=center>
+Explore, discover and connect! The online platform where film professionals can access the full potential of the international festival circuit.
+</mj-text>
+</mj-column>
+</mj-section>
+
+
+<!-- FOOTER SOCIALS -->
+
+    <mj-section background-color="white" padding=0>
+    <mj-group>
+      <mj-column vertical-align="middle" width='100%' padding-left='0%'>
+        <mj-social icon-size="40px" mode="horizontal" align="center" padding=0>
+          <mj-social-element href="https://www.facebook.com/FestivalScope/" src="https://docs.festivalscope.com/2018/marc/fss/img/design/facebook@2x.png" alt='Facebook'>
+          </mj-social-element>
+          <mj-social-element href="https://twitter.com/FestivalScope" src="https://docs.festivalscope.com/2018/marc/fss/img/design/twitter_x_new_logo.png" alt='X'>
+          </mj-social-element>
+          <mj-social-element href="https://www.instagram.com/festival.scope/" src="https://docs.festivalscope.com/2018/marc/fss/img/design/instagram@2x.png" alt='Instagram'>
+          </mj-social-element>
+        </mj-social>
+        <mj-social icon-size="30px" mode="horizontal" align="center">
+
+          <mj-social-element alt='Send us a message' text-padding='0 0px 0 5px' href="mailto:feedback@festivalscope.com" src="https://docs.festivalscope.com/2018/marc/fss/img/design/mail.png" font-family='Futura, Arial, sans-serif'>Send us a message!
+          </mj-social-element>
+        </mj-social>
+      </mj-column>
+      </mj-group>
+    </mj-section>
+    
+    <!-- END OF NEWSLETTER -->
+
+    <mj-section background-color="white" padding-top=0>
+    <mj-column width="80%" padding-top=0 >
+    <mj-text color="black" align='center' font-weight= '200'>You are receiving this email because you registered to our newsletter. 
+You can choose to unsubscribe here at any time.</mj-text>
+
+    </mj-column>
+    </mj-section>
+
+</mj-body>
+</mjml>
