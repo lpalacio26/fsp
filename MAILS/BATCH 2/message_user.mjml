@@ -32,14 +32,23 @@
 
       </mj-column>
     </mj-section padding='0'>
-    <mj-section background-color="#fff">
-      <mj-column css-class="example">
-        <mj-text padding="0" font-size="14px" color="#000000" font-family="futura" line-height="1.5" font-weight="400">{{SENDER_NAME}} <span style="font-size: 12px">({{SENDER_COMPANY_NAME}})</span><br><span style="font-size: 10px">{{COUNTRY}} | {{PRO_CATS}} | <span style="text-decoration:underline;">{{SENDER_EMAIL}}</span></span><br><span style="font-size: 12px; line-height: 1.5"><br>Subject: {{COMMENT}}</span></mj-text>
+    <mj-section background-color="#fff" padding-bottom="0">
+      <mj-column css-class="example" padding-bottom="0px">
+        <mj-text padding="0" font-size="14px" color="#000000" font-family="futura" line-height="1.5" font-weight="400">{{SENDER_NAME}} <span style="font-size: 12px">({{SENDER_COMPANY_NAME}})</span><br><span style="font-size: 10px">{{COUNTRY}} | {{PRO_CATS}} | <span style="text-decoration:underline;">{{SENDER_EMAIL}}</span></span><br><span style="font-size: 1'px; line-height: 1.5"><br>Subject: {{SUBJECT}}</span><br><span style="font-size: 12px; line-height: 1.5"><br>{{COMMENT}}</span></mj-text>
       </mj-column>
     </mj-section>
+        <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' padding-top='0' border-radius='10px 10px 0 0' background-color="white">
+        <mj-text>
+        </mj-text>
+        <mj-text line-height='1.5'>
+          You can answer by simply replying to this email.
+        </mj-text>
+      </mj-column>
+    </mj-section padding='0'>
     <mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='9px'>
       <mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
-        <mj-text padding-bottom=0 padding-top='20px'>Happy screenings,
+        <mj-text padding-bottom=0 padding-top='10px'>Happy screenings,
         </mj-text>
         <mj-text>The Festival Scope Pro Team</mj-text>
       </mj-column>

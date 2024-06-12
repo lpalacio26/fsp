@@ -69,7 +69,7 @@
 
 <!-- TOP IMAGE -->
 <mj-section padding="0">
-<mj-column padding="0" css-class="br_20">
+<mj-column padding="0" css-class="br_20">¨
 <mj-image href='https://pro.festivalscope.com/line-up/show/mk2/18-marcel-pagnol' padding="0"src="https://docs.festivalscope.com/2024/MK2%20Pagnol/marcel_header_new.png" alt='Marcel Pagnol Collection'>
 </mj-image>
 </mj-column>
