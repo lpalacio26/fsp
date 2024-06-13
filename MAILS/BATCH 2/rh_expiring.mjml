@@ -1,0 +1,68 @@
+<mjml>
+  <mj-head>
+    <mj-style inline>
+      .example div {
+        background: white;
+        width: 80%;
+        text-align: justify;
+        margin: 0 auto;
+        padding: 10px 20px 10px 20px;
+        border-radius: 10px;
+
+      }
+    </mj-style>
+    <mj-attributes>
+      <mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="rgb(250,250,250)" width="550px">
+    <mj-section padding-bottom='0'>
+      <mj-column padding-bottom='0'>
+        <mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png' href='https://pro.festivalscope.com'></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+        <mj-text>
+          Hello {{FIRST_NAME}},
+        </mj-text>
+        <mj-text line-height='1.5'>
+          We hope your film has enjoyed additional visibility and distribution opportunities thanks to Festival Scope Pro!
+        </mj-text>
+        <mj-text line-height='1.5'>
+          The new editions of our partner festivals are coming up and we will soon present and promote their new selections of films.
+        </mj-text>
+        <mj-text line-height='1.5'>
+          As for the presentation of your film {{FILM_NAME}} on Festival Scope Pro, it's up to you to choose if you wish to:
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#fff" padding-bottom="0" padding-top="0">
+      <mj-column css-class="example" padding-bottom="0px" padding-top="0">
+        <mj-text padding="10px" padding-bottom="0" font-size="16px" color="#000000" font-family="futura" line-height="1.5"><span style="font-weight:600">A) Unpublish it:</span> Your film will become unavailable on {{DATE}}. You will still have access to your screening reports at any time.</span><br><br><span style="font-weight:600">B) Keep it online:</span> Get in touch with us to know the conditions!<br><span style="font-size: 12px; line-height: 1.5"></span></mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' padding-top='0' border-radius='10px 10px 0 0' background-color="white">
+        <mj-text>
+        </mj-text>
+        <mj-text line-height='1.5' padding-top="0px">
+          Don't hesitate to reach out, we would love to hear your feedback.
+        </mj-text>
+      </mj-column>
+    </mj-section padding='0'>
+    <mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='9px'>
+      <mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+        <mj-text padding-bottom=0 padding-top='10px'>Happy screenings,
+        </mj-text>
+        <mj-text>The Festival Scope Pro Team</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding=0>
+      <mj-column padding=0>
+        <mj-text font-family='Arial, sans-serif' font-size=10px font-style=oblique padding=0 padding-bottom=30px>If you think this e-mail was sent to you by mistake, please write back to <strong><a href='mailto:feedback@festivalscope.com'>feedback@festivalscope.com</a></strong>.</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
