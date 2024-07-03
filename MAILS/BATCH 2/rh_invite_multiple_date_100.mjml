@@ -43,7 +43,7 @@
          You may share this invitation with {{SHARINGS}}. To generate the share link, click on the share button for the film under My Invitations.
         </mj-text>
             <mj-text line-height='1.5'>
-          Hurry up, this invitation is only valid until {{DATE}}!
+         This invitation is only valid until {{DATE}}.
         </mj-text>
 
       </mj-column>
