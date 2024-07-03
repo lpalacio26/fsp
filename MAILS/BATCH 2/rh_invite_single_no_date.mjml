@@ -2,12 +2,12 @@
   <mj-head>
     <mj-style inline>
       .example div {
-        background: white;
+        background: rgb(250, 250, 250);
         width: 80%;
         text-align: justify;
         margin: 0 auto;
         padding: 10px 20px 10px 20px;
-        border-radius: 10px;
+        border-radius: 5px;
 
       }
     </mj-style>
@@ -29,6 +29,17 @@
         <mj-text line-height='1.5'>
           {{SENDER_NAME}} ({{SENDER_COMPANY_NAME}}) has invited you to watch {{FILM_NAME}} on Festival Scope Pro.
         </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#fff">
+      <mj-column css-class="example">
+        <mj-text padding="0" font-size="14px" color="#000000" font-family="futura" line-height="1.5" font-weight="400">{{COMMENT}}</mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white">
         <mj-text line-height='1.5'>
           Simply click on the button below to access the film page (you will be logged-in automatically):
         </mj-text>
@@ -37,8 +48,8 @@
         <mj-text line-height='1.5'>
           This invitation is for {{VIEWINGS}}.
         </mj-text>
-         <mj-text line-height='1.5'>
-         You may share this invitation with {{SHARINGS}}. To generate the share link, click on the share button for the film under My Invitations.
+        <mj-text line-height='1.5'>
+          You may share this invitation with {{SHARINGS}}. To generate the share link, click on the share button for the film under My Invitations.
         </mj-text>
 
       </mj-column>
