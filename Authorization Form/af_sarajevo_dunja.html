@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Festival Scope Pro – Authorization Form</title>
+    <base target="_top" />
+    <script>
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+      function submitForm(event) {
+        var festivalName = document.getElementById("festivalName").value; // Get festival name from hidden input
+        var aValue = document.getElementById("aValue").value;
+
+        // Get the selected value from the first radio group
+        var festivalDelegates = document.querySelector(
+          'input[name="festivalDelegates"]:checked'
+        );
+        var festivalDelegatesValue = festivalDelegates
+          ? festivalDelegates.value
+          : "";
+
+        // Get the selected value from the second radio group
+        var festivalScopeMembers = document.querySelector(
+          'input[name="festivalScopeMembers"]:checked'
+        );
+        var festivalScopeMembersValue = festivalScopeMembers
+          ? festivalScopeMembers.value
+          : "";
+
+        // Check if all required fields are filled
+        var requiredFields = [
+          "internationalTitle",
+          "originalTitle",
+          "directorName",
+          "contactName",
+          "email",
+          "companyName",
+          "country",
+        ];
+        var allFieldsFilled = true;
+        var firstEmptyField = null;
+
+        requiredFields.forEach(function (fieldId) {
+          var fieldValue = document.getElementById(fieldId).value;
+          if (!fieldValue.trim()) {
+            allFieldsFilled = false;
+            if (!firstEmptyField) {
+              firstEmptyField = document.getElementById(fieldId);
+            }
+          }
+        });
+
+        // Check if radio inputs are filled
+        if (!festivalDelegatesValue || !festivalScopeMembersValue) {
+          allFieldsFilled = false;
+          if (!festivalDelegatesValue) {
+            firstEmptyField = document.querySelector(
+              'input[name="festivalDelegates"]'
+            );
+          } else if (!festivalScopeMembersValue) {
+            firstEmptyField = document.querySelector(
+              'input[name="festivalScopeMembers"]'
+            );
+          }
+        }
+
+        // If any required field is empty, scroll to it and prevent form submission
+        if (!allFieldsFilled) {
+          firstEmptyField.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          firstEmptyField.focus();
+        } else {
+          // Show loading spinner
+          document.getElementById("loadingSpinner").style.display = "block";
+
+          // If all required fields are filled, proceed with form submission
+          var internationalTitle =
+            document.getElementById("internationalTitle").value;
+          var originalTitle = document.getElementById("originalTitle").value;
+          var directorName = document.getElementById("directorName").value;
+          var contactName = document.getElementById("contactName").value;
+          var email = document.getElementById("email").value;
+          var companyName = document.getElementById("companyName").value;
+          var country = document.getElementById("country").value;
+
+          var optionalFields = {
+    
+            extraContacts: document.getElementById("extraContacts").value,
+            additionalComments:
+              document.getElementById("additionalComments").value,
+          };
+
+          // Get selected values from checkboxes
+          var professionalCategoriesAccessCheckboxes =
+            document.getElementsByName("professionalCategoriesAccess");
+          professionalCategoriesAccessCheckboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+              optionalFields.professionalCategoriesAccess.push(checkbox.value);
+            }
+          });
+
+          var professionalCategoriesBlockCheckboxes =
+            document.getElementsByName("professionalCategoriesBlock");
+          professionalCategoriesBlockCheckboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+              optionalFields.professionalCategoriesBlock.push(checkbox.value);
+            }
+          });
+
+          // Call the server-side function to submit the form data
+          google.script.run
+            .withSuccessHandler(function () {
+              // Hide loading spinner
+              document.getElementById("loadingSpinner").style.display = "none";
+              // Display success message to the user
+              modal.style.display = "block"; // Show the modal
+            })
+            .withFailureHandler(function (error) {
+              // Hide loading spinner
+              document.getElementById("loadingSpinner").style.display = "none";
+              // Display error message to the user
+              alert("Form submission failed: " + error);
+            })
+            .addUser(
+              internationalTitle,
+              originalTitle,
+              directorName,
+              contactName,
+              email,
+              companyName,
+              country,
+              optionalFields,
+              festivalName, // Include festival name in the parameters
+              aValue,
+              festivalDelegatesValue, // Include selected value from first radio group
+              festivalScopeMembersValue // Include selected value from second radio group
+            );
+        }
+        event.preventDefault();
+      }
+
+      function updateFestivalTitle() {
+        var festivalName = getParameterByName("festival");
+        var aValue = getParameterByName("a");
+
+        if (festivalName) {
+          document.getElementById("big-title").textContent = festivalName;
+          document.getElementById("festivalName").value = festivalName; // Set festival name in hidden input
+        }
+
+        if (aValue) {
+          document.getElementById("aValue").value = aValue; // Set festival name in hidden input
+        }
+      }
+
+      // Function to handle checkbox disable/enable based on selection
+
+      function handleCheckboxSelection() {
+        var accessCheckboxes = document.getElementsByName(
+          "professionalCategoriesAccess"
+        );
+        var blockCheckboxes = document.getElementsByName(
+          "professionalCategoriesBlock"
+        );
+
+        // Loop through all access checkboxes
+        accessCheckboxes.forEach(function (accessCheckbox) {
+          accessCheckbox.addEventListener("change", function () {
+            toggleCheckboxes(accessCheckbox, blockCheckboxes);
+          });
+          // Add tooltip to disabled checkboxes
+          accessCheckbox.addEventListener("mouseover", function () {
+            if (accessCheckbox.disabled) {
+              var tooltip = document.createElement("span");
+              if (noFestivalScope.checked) {
+                tooltip.innerHTML =
+                  "This film will not be available on Festival Scope Pro after the festival.";
+              } else {
+                tooltip.innerHTML =
+                  "The same professional category cannot be On Demand and Blocked at the same time.";
+              }
+
+              tooltip.classList.add("tooltip");
+              document.body.appendChild(tooltip);
+              positionTooltip(accessCheckbox, tooltip);
+            }
+          });
+
+          accessCheckbox.addEventListener("mouseout", function () {
+            var tooltip = document.querySelector(".tooltip");
+            if (tooltip) {
+              tooltip.parentNode.removeChild(tooltip);
+            }
+          });
+        });
+
+        // Loop through all block checkboxes
+        blockCheckboxes.forEach(function (blockCheckbox) {
+          blockCheckbox.addEventListener("change", function () {
+            toggleCheckboxes(blockCheckbox, accessCheckboxes);
+          });
+
+          // Add tooltip to disabled checkboxes
+          blockCheckbox.addEventListener("mouseover", function () {
+            if (blockCheckbox.disabled) {
+              var tooltip = document.createElement("span");
+              if (noFestivalScope.checked) {
+                tooltip.innerHTML =
+                  "This film will not be available on Festival Scope Pro after the festival.";
+              } else {
+                tooltip.innerHTML =
+                  "The same professional category cannot be On Demand and Blocked at the same time.";
+              }
+              tooltip.classList.add("tooltip");
+              document.body.appendChild(tooltip);
+              positionTooltip(blockCheckbox, tooltip);
+            }
+          });
+
+          blockCheckbox.addEventListener("mouseout", function () {
+            var tooltip = document.querySelector(".tooltip");
+            if (tooltip) {
+              tooltip.parentNode.removeChild(tooltip);
+            }
+          });
+        });
+
+        // Select All checkbox event listener
+        document.addEventListener("change", function (event) {
+          var selectAllAccessCheckbox =
+            document.getElementById("selectAllAccess");
+          if (event.target === selectAllAccessCheckbox) {
+            var accessCheckboxes = document.getElementsByName(
+              "professionalCategoriesAccess"
+            );
+            var blockCheckboxes = document.getElementsByName(
+              "professionalCategoriesBlock"
+            );
+
+            if (selectAllAccessCheckbox.checked) {
+              // If 'Select All' is checked, enable and check all checkboxes in 'On Demand' section
+              accessCheckboxes.forEach(function (checkbox) {
+                checkbox.disabled = false;
+                checkbox.checked = true;
+              });
+
+              // Disable and uncheck all checkboxes in 'Block' section
+              blockCheckboxes.forEach(function (checkbox) {
+                checkbox.disabled = true;
+                checkbox.checked = false;
+              });
+            } else {
+              // If 'Select All' is unchecked, disable and uncheck all checkboxes in 'On Demand' section
+              accessCheckboxes.forEach(function (checkbox) {
+                checkbox.checked = false;
+              });
+
+              // Enable all checkboxes in 'Block' section
+              blockCheckboxes.forEach(function (checkbox) {
+                checkbox.disabled = false;
+              });
+
+              // Check status of each 'On Demand' checkbox and disable its corresponding 'Blocked' checkbox
+              accessCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                  var correspondingBlockedCheckbox = document.getElementById(
+                    checkbox.value + "-block"
+                  );
+                  if (correspondingBlockedCheckbox) {
+                    correspondingBlockedCheckbox.disabled = true;
+                  }
+                }
+              });
+            }
+          }
+
+        });
+
+        // Function to position tooltip based on mouse position
+        function positionTooltip(checkbox, tooltip) {
+          var rect = checkbox.getBoundingClientRect();
+          var x = rect.left + window.scrollX;
+          var y = rect.top + window.scrollY - tooltip.offsetHeight - 5;
+          tooltip.style.left = x + "px";
+          tooltip.style.top = y + "px";
+        }
+      }
+
+      // Function to toggle checkboxes disabled state
+      function toggleCheckboxes(clickedCheckbox, checkboxes) {
+        var clickedValue = clickedCheckbox.value;
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.value === clickedValue) {
+            checkbox.disabled = clickedCheckbox.checked;
+          }
+        });
+      }
+
+      // Function to handle checkbox selection for 'On Demand' checkboxes
+      function handleOnDemandCheckboxSelection() {
+        var onDemandCheckboxes = document.getElementsByName(
+          "professionalCategoriesAccess"
+        );
+        var selectAllAccessCheckbox =
+          document.getElementById("selectAllAccess");
+
+        onDemandCheckboxes.forEach(function (checkbox) {
+          checkbox.addEventListener("change", function () {
+            // Check if any 'On Demand' checkbox is unchecked
+            var anyUnchecked = Array.from(onDemandCheckboxes).some(function (
+              cb
+            ) {
+              return !cb.checked;
+            });
+
+            // If any 'On Demand' checkbox is unchecked, uncheck 'Select All'
+            if (anyUnchecked) {
+              selectAllAccessCheckbox.checked = false;
+            }
+          });
+        });
+      }
+
+      // Call the function on page load
+      window.onload = function () {
+        updateFestivalTitle();
+        handleCheckboxSelection();
+        handleOnDemandCheckboxSelection(); // Call the function to handle 'On Demand' checkboxes
+        document.getElementById("loadingSpinner").style.display = "none";
+      };
+
+      function handleSecondRadioChange(radioButton) {
+        var isChecked = radioButton.checked;
+        var optionValue = radioButton.value;
+
+        // Get all input fields and checkboxes in the optional section
+        var optionalFields = document.querySelectorAll(
+          '.optional input[type="text"], .optional textarea, .optional input[type="checkbox"]'
+        );
+
+        if (isChecked && optionValue === "No") {
+          // If the second radio is 'No', clear the input fields, uncheck checkboxes, and disable them
+          optionalFields.forEach(function (field) {
+            if (field.id === "countriesBlock") {
+              field.value = ""; // Clear text input fields and text areas
+              field.disabled = true; // Disable text input fields and text areas
+            } else if (field.type === "checkbox") {
+              field.checked = false; // Uncheck checkboxes
+              field.disabled = true; // Disable checkboxes
+            }
+          });
+        } else if (isChecked && optionValue === "Yes") {
+          // If the second radio is 'Yes', enable all input fields and checkboxes
+          optionalFields.forEach(function (field) {
+            field.disabled = false; // Enable all fields
+          });
+        }
+      }
+    </script>
+
+    <style>
+      header {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        border-bottom: 1px solid black;
+        margin-top: 0;
+        padding-bottom: 0;
+      }
+      .title {
+        font-size: 24px;
+        text-align: center;
+        padding: 0 30px 0 30px;
+        margin-bottom: 10px;
+        margin-top: 0;
+      }
+      .spinner {
+        display: none;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #32d8dc;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        position: fixed;
+        top: 50%;
+        left: 48%;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      /* Tooltip styles */
+      .tooltip {
+        position: absolute;
+        background-color: #000;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 9999;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Black background with opacity */
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 20% auto;
+        padding: 15px 40px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 350px;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 15px;
+      }
+
+      /* Close button */
+      .close {
+        position: relative;
+        left: 55%;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        top: -5px;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 0;
+      }
+
+      body {
+        font-family: Futura, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        background-color: rgb(250, 250, 250);
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        padding: 30px 50px 50px 50px;
+        border-radius: 30px;
+        filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+      }
+
+      label {
+        font-family: Futura, Arial, sans-serif;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 15px;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+
+      .fs-logo {
+        display: flex;
+        justify-content: center;
+        max-width: 600px;
+        margin-bottom: 15px;
+      }
+
+      .intro-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+      }
+
+      form {
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        height: 30px;
+        padding: 0;
+        margin: 0;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+      }
+
+      textarea {
+        width: 100%;
+        height: 60px;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 30px;
+        font-family: inherit;
+        align-items: center;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+      }
+
+      .borders {
+        border: 0px solid grey;
+        padding: 10px 30px 30px 30px;
+        margin-bottom: 0px;
+      }
+
+      .obligatory {
+        border-radius: 10px;
+        border: solid #32d8dc 3px;
+        padding: 20px 10px;
+        width: 90%;
+      }
+
+      .optional {
+        margin-top: 30px;
+        border-radius: 10px;
+        border: solid #32d8dc 3px;
+        padding: 20px 10px;
+        width: 90%;
+      }
+
+      .checkbox-inside {
+        display: flex;
+        align-items: center; /* Align items vertically */
+        margin-bottom: 10px; /* Adjust vertical spacing */
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .box {
+        width: 16px;
+        height: 16px; /* Set the height of the checkbox */
+        margin-right: 10px;
+      }
+
+      .checkbox {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0; /* Remove default margin */
+      }
+
+      fieldset {
+        padding-top: 10px;
+      }
+
+      button {
+        font-family: Futura, Arial, sans-serif;
+        background-color: #32d8dc;
+        color: white;
+        border-radius: 15px;
+        border: none;
+        padding: 10px;
+        font-size: 20px;
+        margin-top: 30px;
+        width: 200px;
+        font-weight: 500;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+      }
+
+      /* New style for button when active (clicked) */
+      button:active {
+        filter: brightness(90%);
+      }
+
+      legend {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .radio-inside label {
+        font-size: 16px;
+        font-weight: 300;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body">
+      <header>
+        <div class="fs-logo">
+          <img
+            src="https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png"
+            alt="Festival Scope Pro"
+            width="70%"
+          />
+        </div>
+      </header>
+      <div class="title">
+        <h1 id="big-title"><?= festivalName ?></h1>
+      </div>
+      <div class="intro-text">
+        <p>
+          By submitting this form I authorise Moving Scope, on a non exclusive
+          basis, to propose online viewings of the film on Festival Scope Pro
+          under the following terms and conditions.
+        </p>
+        <p
+          style="
+            padding-top: 0;
+            margin-top: 0;
+            font-weight: 100;
+            font-size: 14px;
+          "
+        >
+          * All fields marked with an asterisk are mandatory.
+        </p>
+        <p
+          style="
+            padding-top: 0;
+            margin-top: 0;
+            font-size: 14px;
+            font-weight: 100;
+          "
+        >
+          Find our Rights Holders FAQ
+          <a href="https://pro.festivalscope.com/page/rights-holders-faq"
+            >here</a
+          >.
+        </p>
+      </div>
+
+      <div class="form">
+        <form id="myForm">
+          <div class="obligatory">
+            <div class="borders">
+              <label for="internationalTitle">*International Title:</label
+              ><br />
+              <input
+                type="text"
+                id="internationalTitle"
+                name="internationalTitle"
+                required
+              />
+            </div>
+
+            <div class="borders">
+              <label for="originalTitle">*Original Title:</label><br />
+              <input
+                type="text"
+                id="originalTitle"
+                name="originalTitle"
+                required
+              />
+            </div>
+
+            <div class="borders">
+              <label for="directorName">*Director's Name:</label><br />
+              <input
+                type="text"
+                id="directorName"
+                name="directorName"
+                required
+              />
+            </div>
+
+            <div class="borders">
+              <label for="companyName">*Company Name:</label><br />
+              <input type="text" id="companyName" name="companyName" required />
+            </div>
+
+            <div class="borders">
+              <label for="contactName">*Contact Name:</label><br />
+              <input type="text" id="contactName" name="contactName" required />
+            </div>
+
+            <div class="borders">
+              <label for="email">*Email Address:</label><br />
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="borders" style="margin-bottom: 0">
+              <label for="country">*Company Country:</label><br />
+              <input type="text" id="country" name="country" required />
+            </div>
+          </div>
+
+          <!-- ONLINE VIDEO LIBRARY -->
+
+          <div class="optional">
+            <div
+              class="borders"
+              style="padding-top: 0; margin-top: 0; padding-bottom: 0"
+            >
+              <p
+                style="
+                  font-size: 24px;
+                  margin-bottom: 10px;
+                  font-weight: 500;
+                  padding-left: 10px;
+                  padding-bottom: 5px;
+                  padding-top: 5px;
+                  margin-top: 10px;
+                  background-color: #32d8dc;
+                  color: white;
+                  border-radius: 5px;
+                "
+              >
+                ONLINE VIDEO LIBRARY (<?= dates ?>)
+              </p>
+            </div>
+
+            <div class="borders" style="padding-bottom: 10px">
+              <label style="font-weight: 800; font-size: 16px"
+                >*Film available to the following Festival delegates:</label
+              >
+
+              <fieldset style="margin-top: 10px">
+                <legend
+                  style="
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 5px;
+                  "
+                >
+                  Choose one option:
+                </legend>
+
+                <div class="radio-inside">
+                  <input
+                    type="radio"
+                    class="box"
+                    id="industry"
+                    name="festivalDelegates"
+                    value="Industry and Press Festival delegates"
+                    checked
+                  />
+                  <label for="industry"
+                    >Industry and Press Festival delegates</label
+                  >
+                </div>
+
+                <div class="radio-inside">
+                  <input
+                    class="box"
+                    type="radio"
+                    id="noAccess"
+                    name="festivalDelegates"
+                    value="No direct access to the Festival delegates"
+                  />
+                  <label for="noAccess"
+                    >No direct access to the Festival delegates</label
+                  >
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="optional">
+            <div class="borders" style="padding-bottom: 10px">
+              <label for="extraContacts"
+                >Please indicate extra contacts who may need to access screening
+                reports, send invitations or answer screening requests.</label
+              >
+              <input type="text" id="extraContacts" name="extraContacts" />
+              <p style="margin-bottom: 16px">
+                Name, e-mail address, company and country are mandatory.
+              </p>
+            </div>
+
+            <div class="borders" style="margin-bottom: 0">
+              <label for="additionalComments">Additional comments:</label>
+              <textarea
+                id="additionalComments"
+                name="additionalComments"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Include hidden input field to pass festival name -->
+          <input
+            type="hidden"
+            id="festivalName"
+            name="festivalName"
+            value="<?= festivalName ?>"
+          />
+          <input
+            type="hidden"
+            id="aValue"
+            name="aValue"
+            value="<?= aValue ?>"
+          />
+
+          <button type="submit" value="Submit" onclick="submitForm(event)">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalMessage" style="margin-top: 0">
+          Thank you for confirming your film.
+        </p>
+        <p>Festival Scope Pro will be in touch with you!</p>
+        <p>You can close this window.</p>
+      </div>
+    </div>
+
+    <!-- Spinner -->
+    <div id="loadingSpinner" class="spinner"></div>
+  </body>
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</html>
