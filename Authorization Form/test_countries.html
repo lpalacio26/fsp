@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><?= title ?></title>
+    <base target="_top" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.3/tagify.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.3/tagify.min.js"></script>
+
+    <script>
+      // Declare Tagify instances globally
+      let tagifyCountriesBlock, tagifyCountries;
+      $(document).ready(function () {
+        // Define the list of countries to suggest
+        const countrySuggestions = [
+          "United States",
+          "Canada",
+          "United Kingdom",
+          "Germany",
+          "France",
+          "Spain",
+          "Italy",
+          "Australia",
+          "Brazil",
+          "China",
+          "India",
+          "Japan",
+          "Mexico",
+          "Russia",
+          "South Korea",
+          "South Africa",
+          "Argentina",
+          "New Zealand",
+        ];
+
+        // Initialize Tagify on the input element
+        const inputCountriesBlock = document.querySelector("#countriesBlock");
+        tagifyCountriesBlock = new Tagify(inputCountriesBlock, {
+          whitelist: countrySuggestions, // List of suggestions
+          enforceWhitelist: true, // Only allow tags from the whitelist
+          dropdown: {
+            enabled: 0, // Show suggestions when typing starts
+            maxItems: 10, // Maximum number of suggestions to display
+            classname: "tagify__suggestions", // Custom CSS class for suggestions
+            position: "text", // Position suggestions relative to the input text
+            highlightFirst: true, // Highlight the first suggestion
+          },
+        });
+
+        // Initialize Tagify for the 'countries' input
+        const inputCountries = document.querySelector("#country");
+        tagifyCountries = new Tagify(inputCountries, {
+          whitelist: countrySuggestions,
+          enforceWhitelist: true,
+          dropdown: {
+            enabled: 0,
+            maxItems: 10,
+            classname: "tagify__suggestions",
+            position: "text",
+            highlightFirst: true,
+          },
+        });
+      });
+
+      function changeTabTitle(newTitle) {
+        document.title = newTitle;
+      }
+
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        // Decode the parameter value first
+        var decodedValue = decodeURIComponent(results[2].replace(/\+/g, " "));
+        return decodedValue;
+      }
+
+      function submitForm(event) {
+        // Disable submit button
+        const submitButton = document.getElementById("submitButton"); // Ensure this ID matches your submit button
+        submitButton.disabled = true;
+
+        
+
+        var festivalName = document.getElementById("festivalName").value; // Get festival name from hidden input
+        var aValue = document.getElementById("aValue").value;
+
+        var requiredFields = [
+          "internationalTitle",
+          "directorName",
+          "contactName",
+          "email",
+          "companyName",
+          "country",
+        ];
+        var allFieldsFilled = true;
+        var firstEmptyField = null;
+
+        requiredFields.forEach(function (fieldId) {
+          var fieldValue = document.getElementById(fieldId).value;
+          if (!fieldValue.trim()) {
+            allFieldsFilled = false;
+            if (!firstEmptyField) {
+              firstEmptyField = document.getElementById(fieldId);
+            }
+          }
+        });
+
+        if (!allFieldsFilled) {
+          // Scroll to the first empty required field
+          firstEmptyField.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          // Focus on the first empty required field
+          firstEmptyField.focus();
+        } else {
+          
+          // Show loading spinner
+          document.getElementById("loadingSpinner").style.display = "block";
+          // If all required fields are filled, proceed with form submission
+
+          // Retrieve tags from Tagify instances
+          var countriesBlockTags = tagifyCountriesBlock.value
+            .map((tag) => tag.value)
+            .join(", ");
+          var countryTags = tagifyCountries.value
+            .map((tag) => tag.value)
+            .join(", ");
+
+          var internationalTitle =
+            document.getElementById("internationalTitle").value;
+          var originalTitle = document.getElementById("originalTitle").value;
+          var directorName = document.getElementById("directorName").value;
+          var contactName = document.getElementById("contactName").value;
+          var email = document.getElementById("email").value;
+          var companyName = document.getElementById("companyName").value;
+          var country = countryTags;
+
+          var optionalFields = {
+            professionalCategoriesAccess: [],
+            professionalCategoriesBlock: [],
+            countriesBlock: countriesBlockTags,
+            extraContacts: document.getElementById("extraContacts").value,
+            additionalComments:
+              document.getElementById("additionalComments").value,
+          };
+
+          var professionalCategoriesAccessCheckboxes =
+            document.getElementsByName("professionalCategoriesAccess");
+          professionalCategoriesAccessCheckboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+              optionalFields.professionalCategoriesAccess.push(checkbox.value);
+            }
+          });
+
+          var professionalCategoriesBlockCheckboxes =
+            document.getElementsByName("professionalCategoriesBlock");
+          professionalCategoriesBlockCheckboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+              optionalFields.professionalCategoriesBlock.push(checkbox.value);
+            }
+          });
+
+          console.log("Normal countries:", countryTags);
+
+          console.log(
+            "Countries Block Tags (Comma-Separated):",
+            countriesBlockTags
+          );
+          console.log("OP:", optionalFields);
+
+          google.script.run
+            .withSuccessHandler(function () {
+              // Hide loading spinner
+              document.getElementById("loadingSpinner").style.display = "none";
+              // Display success message to the user
+              modal.style.display = "block"; // Show the modal
+              submitButton.disabled = false;
+            })
+            .withFailureHandler(function (error) {
+              // Hide loading spinner
+              document.getElementById("loadingSpinner").style.display = "none";
+              // Display error message to the user
+              alert("Form submission failed: " + error);
+              submitButton.disabled = false;
+            })
+            .addUser(
+              internationalTitle,
+              originalTitle,
+              directorName,
+              contactName,
+              email,
+              companyName,
+              country,
+              optionalFields,
+              festivalName, // Include festival name in the parameters
+              aValue
+            );
+        }
+        event.preventDefault();
+      }
+
+      // Update the updateFestivalTitle function
+      function updateFestivalTitle() {
+        var festivalName = getParameterByName("festival");
+        var aValue = getParameterByName("a");
+
+        if (festivalName) {
+          festivalName = decodeURIComponent(festivalName); // Decode festival name
+          document.getElementById("big-title").textContent = festivalName;
+          document.getElementById("festivalName").value =
+            encodeURIComponent(festivalName); // Set festival name in hidden input with plus sign preserved
+        }
+
+        if (aValue) {
+          document.getElementById("aValue").value = aValue;
+        }
+      }
+
+      // Function to handle checkbox disable/enable based on selection
+
+      function handleCheckboxSelection() {
+        var accessCheckboxes = document.getElementsByName(
+          "professionalCategoriesAccess"
+        );
+        var blockCheckboxes = document.getElementsByName(
+          "professionalCategoriesBlock"
+        );
+
+        // Loop through all access checkboxes
+        accessCheckboxes.forEach(function (accessCheckbox) {
+          accessCheckbox.addEventListener("change", function () {
+            toggleCheckboxes(accessCheckbox, blockCheckboxes);
+          });
+          // Add tooltip to disabled checkboxes
+          accessCheckbox.addEventListener("mouseover", function () {
+            if (accessCheckbox.disabled) {
+              var tooltip = document.createElement("span");
+              tooltip.innerHTML =
+                "The same professional category cannot be On Demand and Blocked at the same time.";
+              tooltip.classList.add("tooltip");
+              document.body.appendChild(tooltip);
+              positionTooltip(accessCheckbox, tooltip);
+            }
+          });
+
+          accessCheckbox.addEventListener("mouseout", function () {
+            var tooltip = document.querySelector(".tooltip");
+            if (tooltip) {
+              tooltip.parentNode.removeChild(tooltip);
+            }
+          });
+        });
+
+        // Loop through all block checkboxes
+        blockCheckboxes.forEach(function (blockCheckbox) {
+          blockCheckbox.addEventListener("change", function () {
+            toggleCheckboxes(blockCheckbox, accessCheckboxes);
+          });
+
+          // Add tooltip to disabled checkboxes
+          blockCheckbox.addEventListener("mouseover", function () {
+            if (blockCheckbox.disabled) {
+              var tooltip = document.createElement("span");
+              tooltip.innerHTML =
+                "The same professional category cannot be On Demand and Blocked at the same time.";
+              tooltip.classList.add("tooltip");
+              document.body.appendChild(tooltip);
+              positionTooltip(blockCheckbox, tooltip);
+            }
+          });
+
+          blockCheckbox.addEventListener("mouseout", function () {
+            var tooltip = document.querySelector(".tooltip");
+            if (tooltip) {
+              tooltip.parentNode.removeChild(tooltip);
+            }
+          });
+        });
+
+        // Select All checkbox event listener
+        document.addEventListener("change", function (event) {
+          var selectAllAccessCheckbox =
+            document.getElementById("selectAllAccess");
+          if (event.target === selectAllAccessCheckbox) {
+            var accessCheckboxes = document.getElementsByName(
+              "professionalCategoriesAccess"
+            );
+            var blockCheckboxes = document.getElementsByName(
+              "professionalCategoriesBlock"
+            );
+
+            if (selectAllAccessCheckbox.checked) {
+              // If 'Select All' is checked, enable and check all checkboxes in 'On Demand' section
+              accessCheckboxes.forEach(function (checkbox) {
+                checkbox.disabled = false;
+                checkbox.checked = true;
+              });
+
+              // Disable and uncheck all checkboxes in 'Block' section
+              blockCheckboxes.forEach(function (checkbox) {
+                checkbox.disabled = true;
+                checkbox.checked = false;
+              });
+            } else {
+              // If 'Select All' is unchecked, disable and uncheck all checkboxes in 'On Demand' section
+              accessCheckboxes.forEach(function (checkbox) {
+                checkbox.checked = false;
+              });
+
+              // Enable all checkboxes in 'Block' section
+              blockCheckboxes.forEach(function (checkbox) {
+                checkbox.disabled = false;
+              });
+
+              // Check status of each 'On Demand' checkbox and disable its corresponding 'Blocked' checkbox
+              accessCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                  var correspondingBlockedCheckbox = document.getElementById(
+                    checkbox.value + "-block"
+                  );
+                  if (correspondingBlockedCheckbox) {
+                    correspondingBlockedCheckbox.disabled = true;
+                  }
+                }
+              });
+            }
+          }
+        });
+
+        // Function to position tooltip based on mouse position
+        function positionTooltip(checkbox, tooltip) {
+          var rect = checkbox.getBoundingClientRect();
+          var x = rect.left + window.scrollX;
+          var y = rect.top + window.scrollY - tooltip.offsetHeight - 5;
+          tooltip.style.left = x + "px";
+          tooltip.style.top = y + "px";
+        }
+      }
+
+      // Function to toggle checkboxes disabled state
+      function toggleCheckboxes(clickedCheckbox, checkboxes) {
+        var clickedValue = clickedCheckbox.value;
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.value === clickedValue) {
+            checkbox.disabled = clickedCheckbox.checked;
+          }
+        });
+      }
+
+      // Function to handle checkbox selection for 'On Demand' checkboxes
+      function handleOnDemandCheckboxSelection() {
+        var onDemandCheckboxes = document.getElementsByName(
+          "professionalCategoriesAccess"
+        );
+        var selectAllAccessCheckbox =
+          document.getElementById("selectAllAccess");
+
+        onDemandCheckboxes.forEach(function (checkbox) {
+          checkbox.addEventListener("change", function () {
+            // Check if any 'On Demand' checkbox is unchecked
+            var anyUnchecked = Array.from(onDemandCheckboxes).some(function (
+              cb
+            ) {
+              return !cb.checked;
+            });
+
+            // If any 'On Demand' checkbox is unchecked, uncheck 'Select All'
+            if (anyUnchecked) {
+              selectAllAccessCheckbox.checked = false;
+            }
+          });
+        });
+      }
+
+      // Call the function on page load
+      window.onload = function () {
+        updateFestivalTitle();
+        handleCheckboxSelection();
+        handleOnDemandCheckboxSelection(); // Call the function to handle 'On Demand' checkboxes
+        document.getElementById("loadingSpinner").style.display = "none";
+      };
+    </script>
+
+    <style>
+      header {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        border-bottom: 1px solid black;
+        margin-top: 0;
+        padding-bottom: 0;
+      }
+      .title {
+        font-size: 24px;
+        text-align: center;
+        padding: 0 30px 0 30px;
+        margin-bottom: 10px;
+        margin-top: 0;
+      }
+      .spinner {
+        display: none;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #32d8dc;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        position: fixed;
+        top: 50%;
+        left: 48%;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      /* Tooltip styles */
+      .tooltip {
+        position: absolute;
+        background-color: #000;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 9999;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Black background with opacity */
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 20% auto;
+        padding: 15px 40px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 350px;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 15px;
+      }
+
+      /* Close button */
+      .close {
+        position: relative;
+        left: 55%;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        top: -5px;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 0;
+      }
+
+      body {
+        font-family: Futura, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        background-color: rgb(250, 250, 250);
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        padding: 30px 50px 50px 50px;
+        border-radius: 30px;
+        filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+      }
+
+      label {
+        font-family: Futura, Arial, sans-serif;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 15px;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+
+      .fs-logo {
+        display: flex;
+        justify-content: center;
+        max-width: 600px;
+        margin-bottom: 15px;
+      }
+
+      .intro-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+      }
+
+      form {
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+      }
+
+      input {
+        width: 100%;
+        height: 30px;
+        margin: 0;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+        border-style: normal;
+      }
+
+      textarea {
+        width: 100%;
+        height: 60px;
+        margin: 0;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 30px;
+        font-family: inherit;
+        align-items: center;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+      }
+
+      .borders {
+        border: 0px solid grey;
+        padding: 10px 30px 30px 30px;
+        margin-bottom: 0px;
+      }
+
+      .obligatory {
+        border-radius: 10px;
+        border: solid #32d8dc 3px;
+        padding: 20px 10px;
+        width: 90%;
+      }
+
+      .optional {
+        margin-top: 30px;
+        border-radius: 10px;
+        border: solid #32d8dc 3px;
+        padding: 20px 10px;
+        width: 90%;
+      }
+
+      .checkbox-inside {
+        display: flex;
+        align-items: center; /* Align items vertically */
+        margin-bottom: 10px; /* Adjust vertical spacing */
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .box {
+        width: 16px;
+        height: 16px; /* Set the height of the checkbox */
+        margin-right: 10px;
+      }
+
+      .checkbox {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0; /* Remove default margin */
+      }
+
+      fieldset {
+        padding-top: 10px;
+      }
+
+      button {
+        font-family: Futura, Arial, sans-serif;
+        background-color: #32d8dc;
+        color: white;
+        border-radius: 15px;
+        border: none;
+        padding: 10px;
+        font-size: 20px;
+        margin-top: 30px;
+        width: 200px;
+        font-weight: 500;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+      }
+
+      /* New style for button when active (clicked) */
+      button:active {
+        filter: brightness(90%);
+      }
+
+      legend {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      /* Dropdown suggestions styling */
+      .tagify__dropdown.tagify__suggestions {
+        background-color: #fff;
+        border: 1px solid #32d8dc;
+        border-radius: 5px;
+        margin: 0; /* Remove any default margin */
+        padding: 0; /* Remove any default padding */
+        position: absolute; /* Position the dropdown absolutely */
+        z-index: 1000; /* Ensure it appears above other elements */
+      }
+
+      /* Hover state for each suggestion */
+      .tagify__dropdown.tagify__suggestions .tagify__dropdown__item:hover {
+        background-color: #32d8dc;
+        color: white;
+      }
+
+      /* Tagify main container */
+      .tagify {
+        border-color: grey;
+        padding-left: 5px;
+        border-radius: 5px;
+        --tags-focus-border-color: grey;
+        border-style: solid;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+
+      }
+
+      .tagify__dropdown.tagify__suggestions .tagify__dropdown__item--active {
+        background-color: #32d8dc;
+        color: white;
+      }
+      /* Tagify input customization */
+      .tagify__input {
+        height: 30px; /* Set the height of the input box */
+        box-sizing: border-box; /* Ensure padding is included in the height */
+        line-height: 60px; /* Set line-height equal to the height of the input to center the cursor */
+        position: relative;
+        text-align: left; /* Align text to the left */
+        padding-left: 5px; /* Reset padding, with space on the left */
+        font-size: 14px; /* Set font size */
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Vertically center items */
+        justify-content: flex-start; /* Start text at the left */
+        line-height: normal; /* Ensure line height does not affect alignment */
+        vertical-align: middle; /* Ensure vertical alignment */
+      }
+
+      /* Adjust placeholder text positioning */
+      .tagify__input::placeholder {
+        line-height: 30px; /* Align placeholder text with input height */
+        color: #aaa; /* Placeholder text color */
+      }
+
+      /* Adjust cursor size and visibility if needed */
+      .tagify__input {
+        font-size: 14px; /* Ensure cursor visibility and alignment */
+      }
+
+      .tagify_input::before{
+        margin: 0;
+        position: relative;
+        top: 30px;
+        line-height: 30px;
+      }
+
+      .tagify_input::after{
+        margin: 0;
+        position: relative;
+        top: 30px;
+        line-height: 30px;
+      }
+      /* Hover state for Tagify */
+      .tagify:hover {
+        border-color: grey;
+      }
+
+      input {
+        width: 100%;
+      }
+      input::placeholder {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body">
+      <header>
+        <div class="fs-logo">
+          <img
+            src="https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png"
+            alt="Festival Scope Pro"
+            width="70%"
+          />
+        </div>
+      </header>
+      <div class="title">
+        <h1 id="big-title"><?= festivalName ?></h1>
+      </div>
+      <div class="intro-text">
+        <p>
+          By submitting this form I authorise Moving Scope, on a non exclusive
+          basis, to propose online viewings of the film on Festival Scope Pro
+          under the following terms and conditions.
+        </p>
+        <p
+          style="
+            padding-top: 0;
+            margin-top: 0;
+            font-weight: 100;
+            font-size: 14px;
+          "
+        >
+          * All fields marked with an asterisk are mandatory.
+        </p>
+        <p
+          style="
+            padding-top: 0;
+            margin-top: 0;
+            font-size: 14px;
+            font-weight: 100;
+          "
+        >
+          Find our Rights Holders FAQ
+          <a href="https://pro.festivalscope.com/page/rights-holders-faq"
+            >here</a
+          >.
+        </p>
+      </div>
+
+      <div class="form">
+        <form id="myForm">
+          <div class="obligatory">
+            <div class="borders">
+              <label for="internationalTitle">*International Title:</label
+              ><br />
+              <input
+                type="text"
+                id="internationalTitle"
+                name="internationalTitle"
+                required
+              />
+            </div>
+
+            <div class="borders">
+              <label for="originalTitle">Original Title:</label><br />
+              <input
+                type="text"
+                id="originalTitle"
+                name="originalTitle"
+                required
+              />
+            </div>
+
+            <div class="borders">
+              <label for="directorName">*Director's Name:</label><br />
+              <input
+                type="text"
+                id="directorName"
+                name="directorName"
+                required
+              />
+            </div>
+
+            <div class="borders">
+              <label for="companyName">*Company Name:</label><br />
+              <input type="text" id="companyName" name="companyName" required />
+            </div>
+
+            <div class="borders">
+              <label for="contactName">*Contact Name:</label><br />
+              <input type="text" id="contactName" name="contactName" required />
+            </div>
+
+            <div class="borders">
+              <label for="email">*Email Address:</label><br />
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="borders" style="margin-bottom: 0">
+              <label for="country">*Company Country:</label><br />
+              <input type="text" id="country" name="country" required style="line-height: 30px;"/>
+            </div>
+          </div>
+
+          <div class="optional">
+            <div
+              class="borders"
+              style="padding-top: 0; margin-top: 0; padding-bottom: 0"
+            >
+              <p
+                style="
+                  font-size: 24px;
+                  margin-bottom: 10px;
+                  font-weight: 500;
+                  padding-left: 10px;
+                  padding-bottom: 5px;
+                  padding-top: 5px;
+                  margin-top: 10px;
+                  background-color: #32d8dc;
+                  color: white;
+                  border-radius: 5px;
+                "
+              >
+                OPTIONAL: Film Restrictions
+              </p>
+              <p style="font-style: italic; color: red">
+                Any professional categories that you do
+                <span style="font-weight: 500">not</span> mark below will have
+                <span style="font-weight: 500">direct access</span>.
+              </p>
+            </div>
+
+            <div class="borders" style="padding-bottom: 10px">
+              <label>Professional Categories with access on demand:</label>
+
+              <fieldset style="margin-top: 10px">
+                <legend
+                  style="
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 5px;
+                  "
+                >
+                  Choose the professional categories with access on demand:
+                </legend>
+
+                <div class="checkbox-inside">
+                  <input type="checkbox" class="box" id="selectAllAccess" />
+                  <span style="font-weight: 500; text-decoration: underline"
+                    >Select All</span
+                  >
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    type="checkbox"
+                    class="box access-checkbox"
+                    id="distribution-access"
+                    name="professionalCategoriesAccess"
+                    value="Distribution"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />Distribution
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="tv-access"
+                    name="professionalCategoriesAccess"
+                    value="TV"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />TV
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    type="checkbox"
+                    class="box access-checkbox"
+                    id="vod"
+                    name="professionalCategoriesAccess"
+                    value="VOD"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />VOD
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="internationalSales"
+                    name="professionalCategoriesAccess"
+                    value="International Sales"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />International Sales
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="filmFestival"
+                    name="professionalCategoriesAccess"
+                    value="Film Festival"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />Film Festival
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="exhibition"
+                    name="professionalCategoriesAccess"
+                    value="Exhibition"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />Exhibition
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="organization"
+                    name="professionalCategoriesAccess"
+                    value="Organization"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />Organization
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="filmPress"
+                    name="professionalCategoriesAccess"
+                    value="Film Press"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />Film Press
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="production"
+                    name="professionalCategoriesAccess"
+                    value="Production"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />Production
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box access-checkbox"
+                    type="checkbox"
+                    id="filmmakers"
+                    name="professionalCategoriesAccess"
+                    value="Filmmakers"
+                    onchange="handleCheckboxSelection(this, 'access')"
+                  />Filmmakers
+                </div>
+              </fieldset>
+
+              <p>
+                If you choose this option, we suggest that you give direct
+                access to Distribution and Film Festival users to best benefit
+                from the service.
+              </p>
+              <p>
+                The professional categories you tick above will need to send you
+                screening requests for you to approve or deny.
+              </p>
+            </div>
+
+            <div class="borders" style="padding-bottom: 10px">
+              <label>Professional Categories to block:</label>
+
+              <fieldset style="margin-top: 10px">
+                <legend
+                  style="
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 5px;
+                  "
+                >
+                  Choose the professional categories to block:
+                </legend>
+
+                <div class="checkbox-inside">
+                  <input
+                    type="checkbox"
+                    class="box"
+                    id="distribution-access"
+                    name="professionalCategoriesBlock"
+                    value="Distribution"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />Distribution
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="tv-access"
+                    name="professionalCategoriesBlock"
+                    value="TV"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />TV
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    type="checkbox"
+                    class="box"
+                    id="vod"
+                    name="professionalCategoriesBlock"
+                    value="VOD"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />VOD
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="internationalSales"
+                    name="professionalCategoriesBlock"
+                    value="International Sales"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />International Sales
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="filmFestival"
+                    name="professionalCategoriesBlock"
+                    value="Film Festival"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />Film Festival
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="exhibition"
+                    name="professionalCategoriesBlock"
+                    value="Exhibition"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />Exhibition
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="organization"
+                    name="professionalCategoriesBlock"
+                    value="Organization"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />Organization
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="filmPress"
+                    name="professionalCategoriesBlock"
+                    value="Film Press"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />Film Press
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="production"
+                    name="professionalCategoriesBlock"
+                    value="Production"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />Production
+                </div>
+
+                <div class="checkbox-inside">
+                  <input
+                    class="box"
+                    type="checkbox"
+                    id="filmmakers-access"
+                    name="professionalCategoriesBlock"
+                    value="Filmmakers"
+                    onchange="handleCheckboxSelection(this, 'block')"
+                  />Filmmakers
+                </div>
+              </fieldset>
+              <p style="margin-bottom: 16px; margin-top: 16px">
+                The professional categories you tick above will be blocked from
+                watching your film.
+              </p>
+            </div>
+
+            <div class="borders">
+              <label for="countriesBlock">Countries to block:</label>
+              <input
+                type="text"
+                id="countriesBlock"
+                name="countriesBlock"
+                style="display: flex"
+              />
+            </div>
+
+            <div class="borders" style="padding-bottom: 10px">
+              <label for="extraContacts"
+                >Please indicate extra contacts who may need to access screening
+                reports, send invitations or answer screening requests.</label
+              >
+              <input type="text" id="extraContacts" name="extraContacts" />
+              <p style="margin-bottom: 16px">
+                Name, e-mail address, company and country are mandatory.
+              </p>
+            </div>
+
+            <div class="borders" style="margin-bottom: 0">
+              <label for="additionalComments">Additional comments:</label>
+              <textarea
+                id="additionalComments"
+                name="additionalComments"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Include hidden input field to pass festival name -->
+          <input
+            type="hidden"
+            id="festivalName"
+            name="festivalName"
+            value="<?= festivalName ?>"
+          />
+          <input
+            type="hidden"
+            id="aValue"
+            name="aValue"
+            value="<?= aValue ?>"
+          />
+
+          <button type="submit" value="Submit" id='submitButton' onclick="submitForm(event)">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalMessage" style="margin-top: 0">
+          Thank you for confirming your film.
+        </p>
+        <p>Festival Scope Pro will be in touch with you!</p>
+        <p>You can close this window.</p>
+      </div>
+    </div>
+
+    <!-- Spinner -->
+    <div id="loadingSpinner" class="spinner"></div>
+  </body>
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</html>
