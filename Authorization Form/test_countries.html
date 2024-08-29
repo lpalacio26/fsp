@@ -18,24 +18,226 @@
       $(document).ready(function () {
         // Define the list of countries to suggest
         const countrySuggestions = [
-          "United States",
-          "Canada",
-          "United Kingdom",
-          "Germany",
-          "France",
-          "Spain",
-          "Italy",
-          "Australia",
-          "Brazil",
-          "China",
-          "India",
-          "Japan",
-          "Mexico",
-          "Russia",
-          "South Korea",
-          "South Africa",
+          "Afghanistan",
+          "Aland Islands",
+          "Albania",
+          "Algeria",
+          "Andorra",
+          "Angola",
+          "Antartica",
+          "Antigua and Barbuda",
           "Argentina",
+          "Armenia",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh",
+          "Barbados",
+          "Belarus",
+          "Belgium",
+          "Belize",
+          "Benin",
+          "Bhutan",
+          "Bolivia",
+          "Bosnia and Herzegovina",
+          "Botswana",
+          "Brazil",
+          "British Indian Ocean Territory",
+          "British Virgin Islands",
+          "Brunei Darussalam",
+          "Bulgaria",
+          "Burkina",
+          "Burundi",
+          "Cambodia",
+          "Cameroon",
+          "Canada",
+          "Cape Verde",
+          "Central African Republic",
+          "Chad",
+          "Chile",
+          "China",
+          "Christmas Island",
+          "Cocos (Keeling) Islands",
+          "Colombia",
+          "Comoros",
+          "Cook Islands",
+          "Republic of the Congo",
+          "Democratic Republic Of The Congo",
+          "Costa Rica",
+          "Croatia",
+          "Cuba",
+          "Cyprus",
+          "Czech Republic",
+          "Denmark",
+          "Djibouti",
+          "Dominica",
+          "Dominican Republic",
+          "East Timor",
+          "Ecuador",
+          "Egypt",
+          "El Salvador",
+          "Equatorial Guinea",
+          "Eritrea",
+          "Estonia",
+          "Ethiopia",
+          "Falkland Islands",
+          "Fiji",
+          "Finland",
+          "France",
+          "French Southern Territories",
+          "Gabon",
+          "Gambia",
+          "Georgia",
+          "Germany",
+          "Ghana",
+          "Greece",
+          "Greenland",
+          "Grenada",
+          "Guatemala",
+          "Guinea",
+          "Guinea-Bissau",
+          "Guyana",
+          "Haiti",
+          "Heard Island and McDonald Islands",
+          "Honduras",
+          "Hungary",
+          "Iceland",
+          "India",
+          "Indonesia",
+          "Iran",
+          "Iraq",
+          "Ireland",
+          "Isle of Man",
+          "Israel",
+          "Italy",
+          "Ivory Coast",
+          "Jamaica",
+          "Japan",
+          "Jordan",
+          "Kazakhstan",
+          "Kenya",
+          "Kiribati",
+          "North Korea",
+          "South Korea",
+          "Kosovo",
+          "Kuwait",
+          "Kyrgyzstan",
+          "Laos",
+          "Latvia",
+          "Lebanon",
+          "Lesotho",
+          "Liberia",
+          "Libya",
+          "Liechtenstein",
+          "Lithuania",
+          "Luxembourg",
+          "Macedonia",
+          "Madagascar",
+          "Malawi",
+          "Malaysia",
+          "Maldives",
+          "Mali",
+          "Malta",
+          "Marshall Islands",
+          "Mauritania",
+          "Mauritius",
+          "Mexico",
+          "Federated States of Micronesia",
+          "Moldova",
+          "Monaco",
+          "Mongolia",
+          "Montenegro",
+          "Morocco",
+          "Mozambique",
+          "Myanmar",
+          "Namibia",
+          "Nauru",
+          "Nepal",
+          "Netherlands",
+          "Netherlands Antilles",
           "New Zealand",
+          "Nicaragua",
+          "Niger",
+          "Nigeria",
+          "Norway",
+          "Northern Mariana Islands",
+          "Oman",
+          "Pakistan",
+          "Palau",
+          "Panama",
+          "Papua New Guinea",
+          "Paraguay",
+          "Peru",
+          "Philippines",
+          "Pitcairn",
+          "Poland",
+          "Portugal",
+          "Qatar",
+          "Réunion",
+          "Romania",
+          "Russia",
+          "Rwanda",
+          "Saint Kitts and Nevis",
+          "Saint Lucia",
+          "Saint Helena",
+          "Saint-Pierre and Miquelon",
+          "Saint Vincent and the Grenadines",
+          "Samoa",
+          "San Marino",
+          "Sao Tome and Principe",
+          "Saudi Arabia",
+          "Senegal",
+          "Serbia",
+          "Seychelles",
+          "Sierra Leone",
+          "Singapore",
+          "Slovakia",
+          "Slovenia",
+          "Solomon Islands",
+          "Somalia",
+          "South Africa",
+          "South Georgia and the South Sandwich Islands",
+          "South Sudan",
+          "Spain",
+          "Sri Lanka",
+          "Sudan",
+          "Suriname",
+          "Swaziland",
+          "Svalbard and Jan Mayen",
+          "Sweden",
+          "Switzerland",
+          "Syria",
+          "Taiwan",
+          "Tajikistan",
+          "Tanzania",
+          "Thailand",
+          "Togo",
+          "Tonga",
+          "Trinidad & Tobago",
+          "Tunisia",
+          "Türkiye",
+          "Turkmenistan",
+          "Turks and Caicos Islands",
+          "Tuvalu",
+          "Uganda",
+          "Ukraine",
+          "United Arab Emirates",
+          "United Kingdom",
+          "USA",
+          "U.S. Virgin Islands",
+          "Uruguay",
+          "Uzbekistan",
+          "Vanuatu",
+          "Vatican City",
+          "Venezuela",
+          "Vietnam",
+          "Wallis and Futuna",
+          "Yemen",
+          "Western Sahara",
+          "Zambia",
+          "Zimbabwe",
         ];
 
         // Initialize Tagify on the input element
@@ -88,8 +290,6 @@
         const submitButton = document.getElementById("submitButton"); // Ensure this ID matches your submit button
         submitButton.disabled = true;
 
-        
-
         var festivalName = document.getElementById("festivalName").value; // Get festival name from hidden input
         var aValue = document.getElementById("aValue").value;
 
@@ -123,7 +323,6 @@
           // Focus on the first empty required field
           firstEmptyField.focus();
         } else {
-          
           // Show loading spinner
           document.getElementById("loadingSpinner").style.display = "block";
           // If all required fields are filled, proceed with form submission
@@ -669,7 +868,6 @@
         --tags-focus-border-color: grey;
         border-style: solid;
         filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
-
       }
 
       .tagify__dropdown.tagify__suggestions .tagify__dropdown__item--active {
@@ -703,14 +901,14 @@
         font-size: 14px; /* Ensure cursor visibility and alignment */
       }
 
-      .tagify_input::before{
+      .tagify_input::before {
         margin: 0;
         position: relative;
         top: 30px;
         line-height: 30px;
       }
 
-      .tagify_input::after{
+      .tagify_input::after {
         margin: 0;
         position: relative;
         top: 30px;
@@ -825,7 +1023,13 @@
 
             <div class="borders" style="margin-bottom: 0">
               <label for="country">*Company Country:</label><br />
-              <input type="text" id="country" name="country" required style="line-height: 30px;"/>
+              <input
+                type="text"
+                id="country"
+                name="country"
+                required
+                style="line-height: 30px"
+              />
             </div>
           </div>
 
@@ -1174,7 +1378,12 @@
             value="<?= aValue ?>"
           />
 
-          <button type="submit" value="Submit" id='submitButton' onclick="submitForm(event)">
+          <button
+            type="submit"
+            value="Submit"
+            id="submitButton"
+            onclick="submitForm(event)"
+          >
             Submit
           </button>
         </form>
