@@ -247,7 +247,7 @@
           enforceWhitelist: true, // Only allow tags from the whitelist
           dropdown: {
             enabled: 0, // Show suggestions when typing starts
-            maxItems: 10, // Maximum number of suggestions to display
+            maxItems: 300, // Maximum number of suggestions to display
             classname: "tagify__suggestions", // Custom CSS class for suggestions
             position: "text", // Position suggestions relative to the input text
             highlightFirst: true, // Highlight the first suggestion
@@ -261,7 +261,7 @@
           enforceWhitelist: true,
           dropdown: {
             enabled: 0,
-            maxItems: 10,
+            maxItems: 300,
             classname: "tagify__suggestions",
             position: "text",
             highlightFirst: true,
@@ -852,6 +852,7 @@
         padding: 0; /* Remove any default padding */
         position: absolute; /* Position the dropdown absolutely */
         z-index: 1000; /* Ensure it appears above other elements */
+
       }
 
       /* Hover state for each suggestion */
