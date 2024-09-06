@@ -5,29 +5,292 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= title ?></title>
     <base target="_top" />
-    <script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.3/tagify.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.3/tagify.min.js"></script>
 
+    <script>
+      // Declare Tagify instances globally
+      let tagifyCountriesBlock, tagifyCountries;
+      $(document).ready(function () {
+        // Define the list of countries to suggest
+        const countrySuggestions = [
+          "Afghanistan",
+          "Aland Islands",
+          "Albania",
+          "Algeria",
+          "Andorra",
+          "Angola",
+          "Antartica",
+          "Antigua and Barbuda",
+          "Argentina",
+          "Armenia",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh",
+          "Barbados",
+          "Belarus",
+          "Belgium",
+          "Belize",
+          "Benin",
+          "Bhutan",
+          "Bolivia",
+          "Bosnia and Herzegovina",
+          "Botswana",
+          "Brazil",
+          "British Indian Ocean Territory",
+          "British Virgin Islands",
+          "Brunei Darussalam",
+          "Bulgaria",
+          "Burkina",
+          "Burundi",
+          "Cambodia",
+          "Cameroon",
+          "Canada",
+          "Cape Verde",
+          "Central African Republic",
+          "Chad",
+          "Chile",
+          "China",
+          "Christmas Island",
+          "Cocos (Keeling) Islands",
+          "Colombia",
+          "Comoros",
+          "Cook Islands",
+          "Republic of the Congo",
+          "Democratic Republic Of The Congo",
+          "Costa Rica",
+          "Croatia",
+          "Cuba",
+          "Cyprus",
+          "Czech Republic",
+          "Denmark",
+          "Djibouti",
+          "Dominica",
+          "Dominican Republic",
+          "East Timor",
+          "Ecuador",
+          "Egypt",
+          "El Salvador",
+          "Equatorial Guinea",
+          "Eritrea",
+          "Estonia",
+          "Ethiopia",
+          "Falkland Islands",
+          "Fiji",
+          "Finland",
+          "France",
+          "French Southern Territories",
+          "Gabon",
+          "Gambia",
+          "Georgia",
+          "Germany",
+          "Ghana",
+          "Greece",
+          "Greenland",
+          "Grenada",
+          "Guatemala",
+          "Guinea",
+          "Guinea-Bissau",
+          "Guyana",
+          "Haiti",
+          "Heard Island and McDonald Islands",
+          "Honduras",
+          "Hong Kong",
+          "Hungary",
+          "Iceland",
+          "India",
+          "Indonesia",
+          "Iran",
+          "Iraq",
+          "Ireland",
+          "Isle of Man",
+          "Israel",
+          "Italy",
+          "Ivory Coast",
+          "Jamaica",
+          "Japan",
+          "Jordan",
+          "Kazakhstan",
+          "Kenya",
+          "Kiribati",
+          "North Korea",
+          "South Korea",
+          "Kosovo",
+          "Kuwait",
+          "Kyrgyzstan",
+          "Laos",
+          "Latvia",
+          "Lebanon",
+          "Lesotho",
+          "Liberia",
+          "Libya",
+          "Liechtenstein",
+          "Lithuania",
+          "Luxembourg",
+          "Macedonia",
+          "Madagascar",
+          "Malawi",
+          "Malaysia",
+          "Maldives",
+          "Mali",
+          "Malta",
+          "Marshall Islands",
+          "Mauritania",
+          "Mauritius",
+          "Mexico",
+          "Federated States of Micronesia",
+          "Moldova",
+          "Monaco",
+          "Mongolia",
+          "Montenegro",
+          "Morocco",
+          "Mozambique",
+          "Myanmar",
+          "Namibia",
+          "Nauru",
+          "Nepal",
+          "Netherlands",
+          "Netherlands Antilles",
+          "New Zealand",
+          "Nicaragua",
+          "Niger",
+          "Nigeria",
+          "Norway",
+          "Northern Mariana Islands",
+          "Oman",
+          "Pakistan",
+          "Palau",
+          "Panama",
+          "Papua New Guinea",
+          "Paraguay",
+          "Peru",
+          "Philippines",
+          "Pitcairn",
+          "Poland",
+          "Portugal",
+          "Qatar",
+          "Réunion",
+          "Romania",
+          "Russia",
+          "Rwanda",
+          "Saint Kitts and Nevis",
+          "Saint Lucia",
+          "Saint Helena",
+          "Saint-Pierre and Miquelon",
+          "Saint Vincent and the Grenadines",
+          "Samoa",
+          "San Marino",
+          "Sao Tome and Principe",
+          "Saudi Arabia",
+          "Senegal",
+          "Serbia",
+          "Seychelles",
+          "Sierra Leone",
+          "Singapore",
+          "Slovakia",
+          "Slovenia",
+          "Solomon Islands",
+          "Somalia",
+          "South Africa",
+          "South Georgia and the South Sandwich Islands",
+          "South Sudan",
+          "Spain",
+          "Sri Lanka",
+          "Sudan",
+          "Suriname",
+          "Swaziland",
+          "Svalbard and Jan Mayen",
+          "Sweden",
+          "Switzerland",
+          "Syria",
+          "Taiwan",
+          "Tajikistan",
+          "Tanzania",
+          "Thailand",
+          "Togo",
+          "Tonga",
+          "Trinidad & Tobago",
+          "Tunisia",
+          "Türkiye",
+          "Turkmenistan",
+          "Turks and Caicos Islands",
+          "Tuvalu",
+          "Uganda",
+          "Ukraine",
+          "United Arab Emirates",
+          "United Kingdom",
+          "USA",
+          "U.S. Virgin Islands",
+          "Uruguay",
+          "Uzbekistan",
+          "Vanuatu",
+          "Vatican City",
+          "Venezuela",
+          "Vietnam",
+          "Wallis and Futuna",
+          "Yemen",
+          "Western Sahara",
+          "Zambia",
+          "Zimbabwe",
+        ];
+
+        // Initialize Tagify on the input element
+        const inputCountriesBlock = document.querySelector("#countriesBlock");
+        tagifyCountriesBlock = new Tagify(inputCountriesBlock, {
+          whitelist: countrySuggestions, // List of suggestions
+          enforceWhitelist: true, // Only allow tags from the whitelist
+          dropdown: {
+            enabled: 0, // Show suggestions when typing starts
+            maxItems: 300, // Maximum number of suggestions to display
+            classname: "tagify__suggestions", // Custom CSS class for suggestions
+            position: "text", // Position suggestions relative to the input text
+            highlightFirst: true, // Highlight the first suggestion
+          },
+        });
+
+        // Initialize Tagify for the 'countries' input
+        const inputCountries = document.querySelector("#country");
+        tagifyCountries = new Tagify(inputCountries, {
+          whitelist: countrySuggestions,
+          enforceWhitelist: true,
+          dropdown: {
+            enabled: 0,
+            maxItems: 300,
+            classname: "tagify__suggestions",
+            position: "text",
+            highlightFirst: true,
+          },
+        });
+      });
 
       function changeTabTitle(newTitle) {
-      document.title = newTitle;
-    }
+        document.title = newTitle;
+      }
 
-      
-
-function getParameterByName(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  // Decode the parameter value first
-  var decodedValue = decodeURIComponent(results[2].replace(/\+/g, " "));
-  return decodedValue;
-}
-
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        // Decode the parameter value first
+        var decodedValue = decodeURIComponent(results[2].replace(/\+/g, " "));
+        return decodedValue;
+      }
 
       function submitForm(event) {
+        // Disable submit button
+        const submitButton = document.getElementById("submitButton"); // Ensure this ID matches your submit button
+        submitButton.disabled = true;
+
         var festivalName = document.getElementById("festivalName").value; // Get festival name from hidden input
         var aValue = document.getElementById("aValue").value;
 
@@ -64,6 +327,15 @@ function getParameterByName(name, url) {
           // Show loading spinner
           document.getElementById("loadingSpinner").style.display = "block";
           // If all required fields are filled, proceed with form submission
+
+          // Retrieve tags from Tagify instances
+          var countriesBlockTags = tagifyCountriesBlock.value
+            .map((tag) => tag.value)
+            .join(", ");
+          var countryTags = tagifyCountries.value
+            .map((tag) => tag.value)
+            .join(", ");
+
           var internationalTitle =
             document.getElementById("internationalTitle").value;
           var originalTitle = document.getElementById("originalTitle").value;
@@ -71,12 +343,12 @@ function getParameterByName(name, url) {
           var contactName = document.getElementById("contactName").value;
           var email = document.getElementById("email").value;
           var companyName = document.getElementById("companyName").value;
-          var country = document.getElementById("country").value;
+          var country = countryTags;
 
           var optionalFields = {
             professionalCategoriesAccess: [],
             professionalCategoriesBlock: [],
-            countriesBlock: document.getElementById("countriesBlock").value,
+            countriesBlock: countriesBlockTags,
             extraContacts: document.getElementById("extraContacts").value,
             additionalComments:
               document.getElementById("additionalComments").value,
@@ -97,18 +369,29 @@ function getParameterByName(name, url) {
               optionalFields.professionalCategoriesBlock.push(checkbox.value);
             }
           });
+
+          console.log("Normal countries:", countryTags);
+
+          console.log(
+            "Countries Block Tags (Comma-Separated):",
+            countriesBlockTags
+          );
+          console.log("OP:", optionalFields);
+
           google.script.run
             .withSuccessHandler(function () {
               // Hide loading spinner
               document.getElementById("loadingSpinner").style.display = "none";
               // Display success message to the user
               modal.style.display = "block"; // Show the modal
+              submitButton.disabled = false;
             })
             .withFailureHandler(function (error) {
               // Hide loading spinner
               document.getElementById("loadingSpinner").style.display = "none";
               // Display error message to the user
               alert("Form submission failed: " + error);
+              submitButton.disabled = false;
             })
             .addUser(
               internationalTitle,
@@ -126,23 +409,22 @@ function getParameterByName(name, url) {
         event.preventDefault();
       }
 
-// Update the updateFestivalTitle function
-function updateFestivalTitle() {
-  var festivalName = getParameterByName('festival');
-  var aValue = getParameterByName('a');
+      // Update the updateFestivalTitle function
+      function updateFestivalTitle() {
+        var festivalName = getParameterByName("festival");
+        var aValue = getParameterByName("a");
 
-  if (festivalName) {
-    festivalName = decodeURIComponent(festivalName); // Decode festival name
-    document.getElementById('big-title').textContent = festivalName;
-    document.getElementById('festivalName').value = encodeURIComponent(festivalName); // Set festival name in hidden input with plus sign preserved
-  }
+        if (festivalName) {
+          festivalName = decodeURIComponent(festivalName); // Decode festival name
+          document.getElementById("big-title").textContent = festivalName;
+          document.getElementById("festivalName").value =
+            encodeURIComponent(festivalName); // Set festival name in hidden input with plus sign preserved
+        }
 
-  if (aValue) {
-    document.getElementById('aValue').value = aValue;
-  }
-}
-
-
+        if (aValue) {
+          document.getElementById("aValue").value = aValue;
+        }
+      }
 
       // Function to handle checkbox disable/enable based on selection
 
@@ -275,7 +557,7 @@ function updateFestivalTitle() {
         });
       }
 
-            // Function to handle checkbox selection for 'On Demand' checkboxes
+      // Function to handle checkbox selection for 'On Demand' checkboxes
       function handleOnDemandCheckboxSelection() {
         var onDemandCheckboxes = document.getElementsByName(
           "professionalCategoriesAccess"
@@ -476,15 +758,14 @@ function updateFestivalTitle() {
       input {
         width: 100%;
         height: 30px;
-        padding: 0;
         margin: 0;
         filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+        border-style: normal;
       }
 
       textarea {
         width: 100%;
         height: 60px;
-        padding: 0;
         margin: 0;
         max-width: 100%;
         min-width: 100%;
@@ -561,6 +842,90 @@ function updateFestivalTitle() {
       legend {
         font-size: 16px;
         font-weight: 500;
+      }
+
+      /* Dropdown suggestions styling */
+      .tagify__dropdown.tagify__suggestions {
+        background-color: #fff;
+        border: 1px solid #32d8dc;
+        border-radius: 5px;
+        margin: 0; /* Remove any default margin */
+        padding: 0; /* Remove any default padding */
+        position: absolute; /* Position the dropdown absolutely */
+        z-index: 1000; /* Ensure it appears above other elements */
+
+      }
+
+      /* Hover state for each suggestion */
+      .tagify__dropdown.tagify__suggestions .tagify__dropdown__item:hover {
+        background-color: #32d8dc;
+        color: white;
+      }
+
+      /* Tagify main container */
+      .tagify {
+        border-color: grey;
+        padding-left: 5px;
+        border-radius: 5px;
+        --tags-focus-border-color: grey;
+        border-style: solid;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+      }
+
+      .tagify__dropdown.tagify__suggestions .tagify__dropdown__item--active {
+        background-color: #32d8dc;
+        color: white;
+      }
+      /* Tagify input customization */
+      .tagify__input {
+        height: 30px; /* Set the height of the input box */
+        box-sizing: border-box; /* Ensure padding is included in the height */
+        line-height: 60px; /* Set line-height equal to the height of the input to center the cursor */
+        position: relative;
+        text-align: left; /* Align text to the left */
+        padding-left: 5px; /* Reset padding, with space on the left */
+        font-size: 14px; /* Set font size */
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Vertically center items */
+        justify-content: flex-start; /* Start text at the left */
+        line-height: normal; /* Ensure line height does not affect alignment */
+        vertical-align: middle; /* Ensure vertical alignment */
+      }
+
+      /* Adjust placeholder text positioning */
+      .tagify__input::placeholder {
+        line-height: 30px; /* Align placeholder text with input height */
+        color: #aaa; /* Placeholder text color */
+      }
+
+      /* Adjust cursor size and visibility if needed */
+      .tagify__input {
+        font-size: 14px; /* Ensure cursor visibility and alignment */
+      }
+
+      .tagify_input::before {
+        margin: 0;
+        position: relative;
+        top: 30px;
+        line-height: 30px;
+      }
+
+      .tagify_input::after {
+        margin: 0;
+        position: relative;
+        top: 30px;
+        line-height: 30px;
+      }
+      /* Hover state for Tagify */
+      .tagify:hover {
+        border-color: grey;
+      }
+
+      input {
+        width: 100%;
+      }
+      input::placeholder {
+        text-align: center;
       }
     </style>
   </head>
@@ -660,7 +1025,13 @@ function updateFestivalTitle() {
 
             <div class="borders" style="margin-bottom: 0">
               <label for="country">*Company Country:</label><br />
-              <input type="text" id="country" name="country" required />
+              <input
+                type="text"
+                id="country"
+                name="country"
+                required
+                style="line-height: 30px"
+              />
             </div>
           </div>
 
@@ -669,7 +1040,7 @@ function updateFestivalTitle() {
               class="borders"
               style="padding-top: 0; margin-top: 0; padding-bottom: 0"
             >
-               <p
+              <p
                 style="
                   font-size: 24px;
                   margin-bottom: 10px;
@@ -967,7 +1338,12 @@ function updateFestivalTitle() {
 
             <div class="borders">
               <label for="countriesBlock">Countries to block:</label>
-              <input type="text" id="countriesBlock" name="countriesBlock" />
+              <input
+                type="text"
+                id="countriesBlock"
+                name="countriesBlock"
+                style="display: flex"
+              />
             </div>
 
             <div class="borders" style="padding-bottom: 10px">
@@ -1004,7 +1380,12 @@ function updateFestivalTitle() {
             value="<?= aValue ?>"
           />
 
-          <button type="submit" value="Submit" onclick="submitForm(event)">
+          <button
+            type="submit"
+            value="Submit"
+            id="submitButton"
+            onclick="submitForm(event)"
+          >
             Submit
           </button>
         </form>
