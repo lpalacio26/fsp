@@ -1,0 +1,71 @@
+<mjml>
+  <mj-head>
+    <mj-style inline>
+      .example div {
+        background: rgb(250, 250, 250);
+        width: 80%;
+        text-align: justify;
+        margin: 0 auto;
+        padding: 10px 20px 10px 20px;
+        border-radius: 5px;
+
+      }
+    </mj-style>
+    <mj-attributes>
+      <mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="rgb(250,250,250)" width="550px">
+    <mj-section padding-bottom='0'>
+      <mj-column padding-bottom='0'>
+        <mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png' href='https://pro.festivalscope.com'></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' background-color="white" padding-top='15px'>
+        <mj-text>
+          Dear %NAME%,
+        </mj-text>
+        <mj-text line-height='1.5'>
+          On behalf of the Festival Scope Pro team we’d like to offer you a year-long complimentary membership to our B2B streaming platform for film professionals worldwide. 
+        </mj-text>
+        <mj-text line-height='1.5'>
+          There you will have access to a selection of films from the best festivals around the world, as well as projects and previous works from co-production markets, and much more.
+        </mj-text>
+         <mj-text line-height='1.5'>
+          According to our records, you've used Festival Scope Pro in the past. Get started by clicking the button below and use your previous login details (your email address and password) to access films.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+
+
+    <mj-section background-color="rgb(250,250,250)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' background-color="white">
+        <mj-button line-height=1.5 border-radius=10px height=40px href='https://pro.festivalscope.com' background-color="#32D8DC" font-family="Futura, Arial, sans-serif" font-size=16px>Discover Festival Scope Pro here!
+</mj-button>
+        <mj-text line-height='1.5'>
+          If you have forgotten your password please <a style='font-weight: bolder; color: black; text-decoration:none;' href="https://pro.festivalscope.com/forgotten-password">click here</a>.
+        </mj-text>
+        <mj-text line-height='1.5'>
+          Need assistance? Contact us at <a style='font-weight:bolder; color:black; text-decoration:none;' href="mailto:feedback@festivalscope.com">feedback@festivalscope.com</a>.
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+
+    <mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='9px'>
+      <mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+        <mj-text padding-bottom=0 padding-top='10px'>Happy screenings!
+        </mj-text>
+        <mj-text>The Festival Scope Pro Team</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding=0>
+      <mj-column padding=0>
+        <mj-text font-family='Arial, sans-serif' font-size=10px font-style=oblique padding=0 padding-bottom=30px>If you think this e-mail was sent to you by mistake, please write back to <strong><a href='mailto:feedback@festivalscope.com'>feedback@festivalscope.com</a></strong>.</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

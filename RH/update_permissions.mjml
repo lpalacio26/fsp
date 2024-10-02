@@ -1,0 +1,62 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-text font-family="Futura, Arial, sans-serif" font-size='16px'>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="rgb(250,250,250)" width="550px">
+    <mj-section padding-bottom='0'>
+      <mj-column padding-bottom='0'>
+        <mj-image width='350px' src='https://docs.festivalscope.com/logos/festivalscope/logo-festival-scope-pro.png'></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="rgb(255,255,255)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' border-radius='10px 10px 0 0' background-color="white" padding-top='15px'>
+        <mj-text>
+          Hello {{ADMIN_NAME}},
+        </mj-text>
+        <mj-text line-height='1.5'>
+          {{RH_NAME}}, the Rights Holder of {{FILM_NAME}}, has requested to update the permissions for the film.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="white" padding-top='5px'>
+      <mj-column width='90%' background-color="rgb(250,250,250)" border-radius="10px" padding-top='10px' padding-bottom='10px'>
+        <mj-text>
+          <span style='font-weight:800;'>Direct Access:</span> {{DIRECT}}
+        </mj-text>
+        <mj-text>
+          <span style='font-weight:800;'>On Demand:</span> {{ON_DEMAND}}
+        </mj-text>
+        <mj-text>
+          <span style='font-weight:800;'>Blocked Categories:</span> {{BLOCKED_CATEGORIES}}
+        </mj-text>
+        <mj-text>
+          <span style='font-weight:800;'>Blocked Countries:</span> {{BLOCKED_COUNTRIES}}
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="rgb(255,255,255)" padding-bottom='0' padding-top='0'>
+
+      <mj-column padding=0 >
+        <mj-button line-height=1.5 border-radius=10px  href='{{LINK_APPROVED}}' background-color="#32D8DC" font-family="Futura, Arial, sans-serif" font-size=16px>Update Permissions</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="rgb(255,255,255)" padding-bottom='0' padding-top='0'>
+      <mj-column padding-bottom='0' padding-top=0 border-radius='10px 10px 0 0' background-color="white" padding-top='0px'>
+        <mj-text>
+          Have a great day!
+        </mj-text>
+        <mj-text line-height='0'>
+          Your friendly neighborhood <span style='color:#32d8dc; font-weight:500'>ScopeBot</span></mj-text>
+      </mj-column>
+    </mj-section padding='0'>
+    <mj-section background-color="rgb(250,250,250)" padding-top='0' padding-bottom='20px'>
+      <mj-column background-color="white" border-radius="0 0 10px 10px" padding-bottom='15px'>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
