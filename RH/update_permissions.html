@@ -67,6 +67,10 @@
           width: 90% !important;
           max-width: 90%;
         }
+        .mj-column-px-200 {
+          width: 200px !important;
+          max-width: 200px;
+        }
       }
     </style>
     <style media="screen and (min-width:480px)">
@@ -77,6 +81,10 @@
       .moz-text-html .mj-column-per-90 {
         width: 90% !important;
         max-width: 90%;
+      }
+      .moz-text-html .mj-column-px-200 {
+        width: 200px !important;
+        max-width: 200px;
       }
     </style>
     <style type="text/css">
@@ -540,9 +548,96 @@
                   text-align: center;
                 "
               >
-                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:550px;" ><![endif]-->
+                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:200px;" ><![endif]-->
                 <div
-                  class="mj-column-per-100 mj-outlook-group-fix"
+                  class="mj-column-px-200 mj-outlook-group-fix"
+                  style="
+                    font-size: 0px;
+                    text-align: left;
+                    direction: ltr;
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 100%;
+                  "
+                >
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="vertical-align: top"
+                    width="100%"
+                  >
+                    <tbody>
+                      <tr>
+                        <td
+                          align="center"
+                          vertical-align="middle"
+                          style="
+                            font-size: 0px;
+                            padding: 10px 25px;
+                            word-break: break-word;
+                          "
+                        >
+                          <table
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            role="presentation"
+                            style="
+                              border-collapse: separate;
+                              width: 120px;
+                              line-height: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr>
+                                <td
+                                  align="center"
+                                  bgcolor="#414141"
+                                  role="presentation"
+                                  style="
+                                    border: none;
+                                    border-radius: 10px;
+                                    cursor: auto;
+                                    mso-padding-alt: 10px 25px;
+                                    background: #414141;
+                                  "
+                                  valign="middle"
+                                >
+                                  <a
+                                    href="{{LINK_DENIED}}"
+                                    style="
+                                      display: inline-block;
+                                      width: 70px;
+                                      background: #414141;
+                                      color: #ffffff;
+                                      font-family: Futura, Arial, sans-serif;
+                                      font-size: 16px;
+                                      font-weight: normal;
+                                      line-height: 1.5;
+                                      margin: 0;
+                                      text-decoration: none;
+                                      text-transform: none;
+                                      padding: 10px 25px;
+                                      mso-padding-alt: 0px;
+                                      border-radius: 10px;
+                                    "
+                                    target="_blank"
+                                    >Deny</a
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:200px;" ><![endif]-->
+                <div
+                  class="mj-column-px-200 mj-outlook-group-fix"
                   style="
                     font-size: 0px;
                     text-align: left;
@@ -587,6 +682,7 @@
                                     role="presentation"
                                     style="
                                       border-collapse: separate;
+                                      width: 120px;
                                       line-height: 100%;
                                     "
                                   >
@@ -609,6 +705,7 @@
                                             href="{{LINK_APPROVED}}"
                                             style="
                                               display: inline-block;
+                                              width: 70px;
                                               background: #32d8dc;
                                               color: #ffffff;
                                               font-family: Futura, Arial,
@@ -624,7 +721,7 @@
                                               border-radius: 10px;
                                             "
                                             target="_blank"
-                                            >Update Permissions</a
+                                            >Approve</a
                                           >
                                         </td>
                                       </tr>
